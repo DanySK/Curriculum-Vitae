@@ -356,62 +356,81 @@ The contribution can be divided in three main branches. First, we introduce a no
 % 
 % \end{innerlist}
 
-\section{Journal\\Publications} \begin{bibsection}
-    \item Franco Zambonelli, Andrea Omicini, Bernhard Anzengruber, Gabriella Castelli, Francesco L. De Angelis, Giovanna Di Marzo Serugendo, Simon Dobson, Jose Luis Fernandez-Marquez, Alois Ferscha, Marco Mamei, Stefano Mariani, Ambra Molesini, Sara Montagna, Jussi Nieminen, Danilo Pianini, Matteo Risoldi, Alberto Rosi, Graeme Stevenson, Mirko Viroli, Juan Ye --- \doititle{10.1016/j.pmcj.2014.12.002}{Developing pervasive multi-agent systems with nature-inspired coordination.} \emph{Pervasive and Mobile Computing, December 2014}.
+ \vspace{0.1in}
+ \section{Publications ordered by time}
+ \renewcommand{\section}[2]{}
+ \nocite{*}
+ \vspace{-0.29in}
+ \bibliographystyle{IEEEtran}
+ \bibliography{bibliography}
+ \vspace{0.1in}
 
-    \item Danilo Pianini, Sara Montagna, Mirko Viroli --- \doititle{10.1057/jos.2012.27}{Chemical-oriented simulation of computational systems with ALCHEMIST.} \emph{Journal of Simulation, January 2013}.
-\end{bibsection}
+\renewcommand{\section}[2]%
+        {\pagebreak[3]\vspace{1.3\baselineskip}%
+         \phantomsection\addcontentsline{toc}{section}{#1}%
+         \hspace{0in}%
+         \marginpar{
+         \raggedright \scshape #1}#2}
 
-\vspace{0.1in}
 
-\section{Conference\\Publications} \begin{bibsection}
-
-    \item Ferruccio Damiani, Mirko Viroli, Danilo Pianini, Jacob Beal --- \doititle{10.1007/978-3-319-19195-9_8}{Code Mobility Meets Self-organisation: A Higher-Order Calculus of Computational Fields.} \emph{Formal Techniques for Distributed Objects, Components, and Systems, Lecture Notes in Computer Science 9039, pages 113-128, June 2015}.
-    
-    \item Danilo Pianini, Mirko Viroli, Franco Zambonelli, Alois Ferscha --- \doititle{10.1109/HPCSim.2014.6903721}{HPC from a self-organisation perspective: The case of crowd steering at the urban scale.} \emph{High Performance Computing Simulation (HPCS), 2014 International Conference on, pages 460-467, July 2014}.
-    
-    \item Danilo Pianini, Stefano Sebastio, Andrea Vandin --- \doititle{10.1109/HPCSim.2014.6903715}{Distributed statistical analysis of complex systems modeled through a chemical metaphor.} \emph{High Performance Computing Simulation (HPCS), 2014 International Conference on, pages 416-423, July 2014}.
-
-    \item Bernhard Anzengruber, Danilo Pianini, Jussi Nieminen, Alois Ferscha --- \doititle{10.1007/978-3-319-03260-3_18}{Predicting Social Density in Mass Events to Prevent Crowd Disasters.} \emph{SocInfo, Lecture Notes in Computer Science 8238, pages 206-215, 2013, Springer}.
-    
-    \item Graeme Stevenson, Juan Ye, Simon Dobson, Danilo Pianini, Sara Montagna, Mirko Viroli --- \doititle{10.1145/2480362.2480619}{Combining self-organisation, context-awareness and semantic reasoning: the case of resource discovery in opportunistic networks.} \emph{Proceedings of the 28th ACM Symposium On Applied Computing (SAC 2013), March 2013}.
-    
-    \item Sara Montagna, Danilo Pianini, Mirko Viroli --- \doititle{10.1109/SASO.2012.25}{Gradient-based Self-organisation Patterns of Anticipative Adaptation.} \emph{Proceedings of 6th IEEE International Conference on Self-Adaptive and Self-Organizing Systems (SASO 2012), May 2012, IEEE Computer Society}.
-    
-    \item Mirko Viroli, Danilo Pianini, Jacob Beal --- \doititle{10.1007/978-3-642-30829-1_15}{Linda in space-time: an adaptive coordination model for mobile ad-hoc environments.} \emph{Coordination Models and Languages, LNCS 7274, pages 212--229, jun 2012, Springer-Verlag}.
-    
-    \item Sara Montagna, Danilo Pianini, Mirko Viroli --- \doititle{10.1145/2245276.2231999}{A Model for Drosophila Melanogaster Development from a Single Cell to Stripe Pattern Formation.} \emph{Proceedings of the 27th Annual ACM Symposium on Applied Computing (SAC 2012), 26-30 March 2012}.
-    
-    \item Mirko Viroli, Danilo Pianini, Sara Montagna, Graeme Stevenson --- \doititle{10.1145/2245276.2245336}{Pervasive Ecosystems: a Coordination Model based on Semantic Chemistry.} \emph{Proceedings of the 27th Annual ACM Symposium on Applied Computing (SAC 2012), 26-30 March 2012}.
-
-    \item Matteo Risoldi, Sara Montagna, Danilo Pianini, Mirko Viroli, Giovanna Di Marzo Serugendo --- \doititle{10.1007/978-3-642-24124-6_12}{Self-Organising Pervasive Ecosystems Supporting Resilience: A Crowd Evacuation Example.} \emph{Proceedings of the 3rd International Workshop on Software Engineering for Resilient Systems, Lecture Notes in Computer Science 6968, 29-30 September 2011}.
-
-    \item Danilo Pianini, Sara Montagna, Mirko Viroli --- \href{http://www.alice.unibo.it/xwiki/bin/view/Publications/PianiniMASS11}{A Chemical Inspired Simulation Framework for Pervasive Services Ecosystems.} \emph{Proceedings of the Federated Conference on Computer Science and Information Systems (FedCSIS 2011), 18-21 September 2011}.
-
-    \item Danilo Pianini, Sascia Virruso, Ronaldo Menezes, Andrea Omicini, Mirko Viroli --- \doititle{10.1109/SASO.2010.35}{Self Organization in Coordination Systems Using a WordNet-Based Ontology.} \emph{4th IEEE International Conference on Self-Adaptive and Self-Organizing Systems (SASO 2010), 27 September - 1 October 2010}.
-\end{bibsection}
-
-% \section{Books in Preparation} \begin{bibsection}
-%     \item Pavlic, T.P., B.W.~Andrews, K.M.~Passino, and T.A.~Waite.
-%         \emph{Foraging Theory for Engineering}.
+% \section{Journal\\Publications} \begin{bibsection}
+% 
+% 
+%     \item Franco Zambonelli, Andrea Omicini, Bernhard Anzengruber, Gabriella Castelli, Francesco L. De Angelis, Giovanna Di Marzo Serugendo, Simon Dobson, Jose Luis Fernandez-Marquez, Alois Ferscha, Marco Mamei, Stefano Mariani, Ambra Molesini, Sara Montagna, Jussi Nieminen, Danilo Pianini, Matteo Risoldi, Alberto Rosi, Graeme Stevenson, Mirko Viroli, Juan Ye --- \doititle{10.1016/j.pmcj.2014.12.002}{Developing pervasive multi-agent systems with nature-inspired coordination.} \emph{Pervasive and Mobile Computing, December 2014}.
+% 
+%     \item Danilo Pianini, Sara Montagna, Mirko Viroli --- \doititle{10.1057/jos.2012.27}{Chemical-oriented simulation of computational systems with ALCHEMIST.} \emph{Journal of Simulation, January 2013}.
 % \end{bibsection}
-%\section{Accepted\\papers} \begin{bibsection}
-%    \item Mirko Viroli, Danilo Pianini, Jacob Beal --- \href{}{Linda in space-time: an adaptive coordination model for mobile ad-hoc environments} Coordination 2012
-%\end{bibsection}
-
-% \section{Submitted\\papers} \begin{bibsection}
-%     \item Danilo Pianini, Sara Montagna, Mirko Viroli --- \href{}{Chemical-oriented simulation of computational systems with ALCHEMIST.} Journal of Simulation.
+% 
+% \vspace{0.1in}
+% 
+% \section{Conference\\Publications} \begin{bibsection}
+% 
+%     \item Ferruccio Damiani, Mirko Viroli, Danilo Pianini, Jacob Beal --- \doititle{10.1007/978-3-319-19195-9_8}{Code Mobility Meets Self-organisation: A Higher-Order Calculus of Computational Fields.} \emph{Formal Techniques for Distributed Objects, Components, and Systems, Lecture Notes in Computer Science 9039, pages 113-128, June 2015}.
+%     
+%     \item Danilo Pianini, Mirko Viroli, Franco Zambonelli, Alois Ferscha --- \doititle{10.1109/HPCSim.2014.6903721}{HPC from a self-organisation perspective: The case of crowd steering at the urban scale.} \emph{High Performance Computing Simulation (HPCS), 2014 International Conference on, pages 460-467, July 2014}.
+%     
+%     \item Danilo Pianini, Stefano Sebastio, Andrea Vandin --- \doititle{10.1109/HPCSim.2014.6903715}{Distributed statistical analysis of complex systems modeled through a chemical metaphor.} \emph{High Performance Computing Simulation (HPCS), 2014 International Conference on, pages 416-423, July 2014}.
+% 
+%     \item Bernhard Anzengruber, Danilo Pianini, Jussi Nieminen, Alois Ferscha --- \doititle{10.1007/978-3-319-03260-3_18}{Predicting Social Density in Mass Events to Prevent Crowd Disasters.} \emph{SocInfo, Lecture Notes in Computer Science 8238, pages 206-215, 2013, Springer}.
+%     
+%     \item Graeme Stevenson, Juan Ye, Simon Dobson, Danilo Pianini, Sara Montagna, Mirko Viroli --- \doititle{10.1145/2480362.2480619}{Combining self-organisation, context-awareness and semantic reasoning: the case of resource discovery in opportunistic networks.} \emph{Proceedings of the 28th ACM Symposium On Applied Computing (SAC 2013), March 2013}.
+%     
+%     \item Sara Montagna, Danilo Pianini, Mirko Viroli --- \doititle{10.1109/SASO.2012.25}{Gradient-based Self-organisation Patterns of Anticipative Adaptation.} \emph{Proceedings of 6th IEEE International Conference on Self-Adaptive and Self-Organizing Systems (SASO 2012), May 2012, IEEE Computer Society}.
+%     
+%     \item Mirko Viroli, Danilo Pianini, Jacob Beal --- \doititle{10.1007/978-3-642-30829-1_15}{Linda in space-time: an adaptive coordination model for mobile ad-hoc environments.} \emph{Coordination Models and Languages, LNCS 7274, pages 212--229, jun 2012, Springer-Verlag}.
+%     
+%     \item Sara Montagna, Danilo Pianini, Mirko Viroli --- \doititle{10.1145/2245276.2231999}{A Model for Drosophila Melanogaster Development from a Single Cell to Stripe Pattern Formation.} \emph{Proceedings of the 27th Annual ACM Symposium on Applied Computing (SAC 2012), 26-30 March 2012}.
+%     
+%     \item Mirko Viroli, Danilo Pianini, Sara Montagna, Graeme Stevenson --- \doititle{10.1145/2245276.2245336}{Pervasive Ecosystems: a Coordination Model based on Semantic Chemistry.} \emph{Proceedings of the 27th Annual ACM Symposium on Applied Computing (SAC 2012), 26-30 March 2012}.
+% 
+%     \item Matteo Risoldi, Sara Montagna, Danilo Pianini, Mirko Viroli, Giovanna Di Marzo Serugendo --- \doititle{10.1007/978-3-642-24124-6_12}{Self-Organising Pervasive Ecosystems Supporting Resilience: A Crowd Evacuation Example.} \emph{Proceedings of the 3rd International Workshop on Software Engineering for Resilient Systems, Lecture Notes in Computer Science 6968, 29-30 September 2011}.
+% 
+%     \item Danilo Pianini, Sara Montagna, Mirko Viroli --- \href{http://www.alice.unibo.it/xwiki/bin/view/Publications/PianiniMASS11}{A Chemical Inspired Simulation Framework for Pervasive Services Ecosystems.} \emph{Proceedings of the Federated Conference on Computer Science and Information Systems (FedCSIS 2011), 18-21 September 2011}.
+% 
+%     \item Danilo Pianini, Sascia Virruso, Ronaldo Menezes, Andrea Omicini, Mirko Viroli --- \doititle{10.1109/SASO.2010.35}{Self Organization in Coordination Systems Using a WordNet-Based Ontology.} \emph{4th IEEE International Conference on Self-Adaptive and Self-Organizing Systems (SASO 2010), 27 September - 1 October 2010}.
 % \end{bibsection}
-
-\section{Other\\Publications} \begin{bibsection}
-    \item Sara Montagna, Mirko Viroli, Danilo Pianini, Jose Luis Fernandez-Marquez --- \href{http://ceur-ws.org/Vol-892/paper1.pdf}{Towards a comprehensive approach to spontaneous self-composition in pervasive ecosystems.} \emph{Proceedings of the 13th Workshop on Objects and Agents, 12 September 2012. Flavio De Paoli, Giuseppe Vizzari (eds.), CEUR-WS}.
-    
-    \item Danilo Pianini, Mirko Viroli, Sara Montagna --- \href{http://ceur-ws.org/Vol-741/ID15_PianiniViroliMontagna.pdf}{A Simulation Framework for Pervasive Service Ecosystems.} \emph{WOA 2011 - XII Workshop Nazionale "Dagli Oggetti agli Agenti", CEUR Workshop Proceedings 741, 4-6 July 2011}.
-
-    \item Danilo Pianini -- \href{http://www.alice.unibo.it/xwiki/bin/view/Theses/EcosystemsSimulation}{Un Framework per la Simulazione di Ecosistemi di Servizi Pervasivi.} \emph{Master Thesis, 2011, Università di Bologna}.
-
-    \item Danilo Pianini -- \href{http://www.alice.unibo.it/xwiki/bin/view/Theses/PianiniSelforgcoor08}{Dalla Swarm Intelligence alla Self-Organising Coordination: Applicazione a Scenari Pervasive.} \emph{Laurea Thesis, 2008, Università di Bologna}.
-\end{bibsection}
+% 
+% % \section{Books in Preparation} \begin{bibsection}
+% %     \item Pavlic, T.P., B.W.~Andrews, K.M.~Passino, and T.A.~Waite.
+% %         \emph{Foraging Theory for Engineering}.
+% % \end{bibsection}
+% %\section{Accepted\\papers} \begin{bibsection}
+% %    \item Mirko Viroli, Danilo Pianini, Jacob Beal --- \href{}{Linda in space-time: an adaptive coordination model for mobile ad-hoc environments} Coordination 2012
+% %\end{bibsection}
+% 
+% % \section{Submitted\\papers} \begin{bibsection}
+% %     \item Danilo Pianini, Sara Montagna, Mirko Viroli --- \href{}{Chemical-oriented simulation of computational systems with ALCHEMIST.} Journal of Simulation.
+% % \end{bibsection}
+% 
+% \section{Other\\Publications} \begin{bibsection}
+%     \item Sara Montagna, Mirko Viroli, Danilo Pianini, Jose Luis Fernandez-Marquez --- \href{http://ceur-ws.org/Vol-892/paper1.pdf}{Towards a comprehensive approach to spontaneous self-composition in pervasive ecosystems.} \emph{Proceedings of the 13th Workshop on Objects and Agents, 12 September 2012. Flavio De Paoli, Giuseppe Vizzari (eds.), CEUR-WS}.
+%     
+%     \item Danilo Pianini, Mirko Viroli, Sara Montagna --- \href{http://ceur-ws.org/Vol-741/ID15_PianiniViroliMontagna.pdf}{A Simulation Framework for Pervasive Service Ecosystems.} \emph{WOA 2011 - XII Workshop Nazionale "Dagli Oggetti agli Agenti", CEUR Workshop Proceedings 741, 4-6 July 2011}.
+% 
+%     \item Danilo Pianini -- \href{http://www.alice.unibo.it/xwiki/bin/view/Theses/EcosystemsSimulation}{Un Framework per la Simulazione di Ecosistemi di Servizi Pervasivi.} \emph{Master Thesis, 2011, Università di Bologna}.
+% 
+%     \item Danilo Pianini -- \href{http://www.alice.unibo.it/xwiki/bin/view/Theses/PianiniSelforgcoor08}{Dalla Swarm Intelligence alla Self-Organising Coordination: Applicazione a Scenari Pervasive.} \emph{Laurea Thesis, 2008, Università di Bologna}.
+% \end{bibsection}
 
 % \section{Referee Service} \begin{loneinnerlist}
 %     \item \emph{49\textsuperscript{th} Annual Conference on Decision and Control}
