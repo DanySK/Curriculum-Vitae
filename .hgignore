@@ -8,4 +8,6 @@ syntax:glob
 *~
 .directory
 curriculum.pdf
+*.run.xml
+*.bcf
 
