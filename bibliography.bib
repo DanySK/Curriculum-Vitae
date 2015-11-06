@@ -298,14 +298,23 @@ language={English}
   abstract = "The complexity of pervasive computing systems is rapidly increasing, and this calls for service models and coordination approaches intrinsically manifesting self-organisation of component interactions. The goal of this paper is to provide a coordination model (formalised as a process algebra) capturing the relevant aspects of such systems. It should allow the behaviour of large-scale, situated, and self-organising systems to be conveniently expressed, paving the way towards their rigorous study as well as development of supporting platforms. Focusing on the recently introduced concept of pervasive ecosystems, the proposed model revolves around (i) the notion of a distributed and dynamic space of “live semantic annotations” (wrapping data, knowledge, and the relevant facts about activities of humans, devices, and services) upon which autonomous agents coordinate and (ii) a small set of chemical-resembling coordination rules that enforce mechanisms of diffusion, aggregation, decay, and bonding between such annotations. "
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+@inproceedings{ProtelisSAC14,
+  title = {Protelis: Practical Aggregate Programming},
+  author = {Pianini, Danilo AND Viroli, Mirko AND Beal, Jacob},
+  year = {2015}
+  pages = {1846--1853},
+}
 
-@inproceedings{PBV-SAC2015,
-Author = {Pianini, Danilo AND Beal, Jacob AND Viroli, Mirko },
-Booktitle = {ACM Symposium on Applied Computing (SAC 2015)},
-Title = {Practical Aggregate Programming with {\sc Protelis}},
-Year = 2015,
-note = {To appear.}}
+  publisher = {ACM},
+  url = {http://doi.acm.org/10.1145/2695664.2695913},
+  doi = {10.1145/2695664.2695913},
+  abstract = {The notion of a computational field has been proposed as a unifying abstraction for developing distributed systems, focusing on the computations and coordination of aggregates of devices instead of individual behavior. Prior field-based languages, however, have suffered from a number of practical limitations that have posed barriers to adoption and use. We address these limitations by introduction of Protelis, a functional language based on computational fields and embedded in Java, thereby enabling the construction of widely reusable components of aggregate systems. We demonstrate the simplicity of Protelis integration and programming through two examples: simulation of a pervasive computing scenario in the Alchemist simulator, and coordinated management of a network of services.},
+  address = {Salamanca, Spain},
+  isbn = {978-1-4503-3196-8},
+  booktitle = {Proceedings of the 30th Annual {ACM} Symposium on Applied Computing, Salamanca, Spain, April 13-17, 2015},
+  editor = {Wainwright, Roger L. and Corchado, Juan Manuel and Bechini, Alessio and Hong, Jiman},
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 @article{KER2015,
 Author = {Dobson, Simon AND Viroli, Mirko AND Fernandez-Marquez, José Luis AND Zambonelli, Franco AND Stevenson, Graeme AND Di Marzo Serugendo, Giovanna AND Montagna, Sara AND Pianini, Danilo AND Ye, Juan AND Castelli, Gabriella AND Rosi, Alberto},
@@ -313,14 +322,6 @@ Journal = {The Knowledge Engineering Review},
 Title = {Spatial awareness in pervasive ecosystems},
 Year = 2015,
 note = {To appear.}}
-
-@article{tetc,
-Author = {Jacob Beal AND Mirko Viroli AND Danilo Pianini AND Ferruccio Damiani},
-Journal = {IEEE Transaction on Emergent Topics in Computing},
-Title = {Scale-independent computations in situated networks},
-Year = 2015,
-note = {Submitted for publication.}
-}
 
 @inproceedings{SASO2015,
   author    = {Viroli, Mirko and
@@ -335,13 +336,33 @@ note = {Submitted for publication.}
 }
 
 @article{IEEECIOT2015,
-  author    = {Beal, Jacob and Pianini, Danilo and Viroli, Mirko},
+  author    = {Beal, Jacob and
+               Pianini, Danilo and
+               Viroli, Mirko},
   title     = {Aggregate Programming for the Internet of Things},
   journal   = {{IEEE} Computer},
-  note = {To appear in September 2015.}
+  volume    = {48},
+  number    = {9},
+  pages     = {22--30},
+  year      = {2015},
+  url       = {http://doi.ieeecomputersociety.org/10.1109/MC.2015.261},
+  doi       = {10.1109/MC.2015.261},
+  timestamp = {Tue, 29 Sep 2015 15:15:16 +0200},
+  biburl    = {http://dblp.uni-trier.de/rec/bib/journals/computer/BealPV15},
+  bibsource = {dblp computer science bibliography, http://dblp.org}
 }
 
-
+@inproceedings{SASO2015,
+  author    = {Viroli, Mirko and
+               Beal, Jacob and
+               Damiani, Ferruccio and
+               Pianini, Danilo and
+               },
+  title     = {Efficient Engineering of Complex Self-Organizing Systems by Self-Stabilising Fields},
+  booktitle = {Ninth {IEEE} International Conference on Self-Adaptive and Self-Organizing Systems, {SASO} 2015},
+  year      = {2015},
+  note = {To appear.}
+}
 
 
 
