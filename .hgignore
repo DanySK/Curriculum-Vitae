@@ -10,4 +10,4 @@ syntax:glob
 curriculum.pdf
 *.run.xml
 *.bcf
-
+*.backup
