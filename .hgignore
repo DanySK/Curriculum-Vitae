@@ -11,3 +11,4 @@ curriculum.pdf
 *.run.xml
 *.bcf
 *.backup
+*.synctex.gz
