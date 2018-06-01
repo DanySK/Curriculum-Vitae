@@ -1,0 +1,859 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Simple LaTeX CV Template %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% NOTE: If you find that it says                                     %%
+%%                                                                    %%
+%%                           1 of ??                                  %%
+%%                                                                    %%
+%% at the bottom of your first page, this means that the AUX file     %%
+%% was not available when you ran LaTeX on this source. Simply RERUN  %%
+%% LaTeX to get the ``??'' replaced with the number of the last page  %%
+%% of the document. The AUX file will be generated on the first run   %%
+%% of LaTeX and used on the second run to fill in all of the          %%
+%% references.                                                        %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Don't like 10pt? Try 11pt or 12pt
+\documentclass[10pt]{article}
+\newcommand{\sapere}{\texttt{SAPERE}}
+\newcommand{\doititle}[2]{\href{http://dx.doi.org/#1}{#2}}
+
+% This is a helpful package that puts math inside length specifications
+\usepackage{calc}
+\usepackage[utf8]{inputenc} % Consente l'uso caratteri accentati italiani
+\usepackage[italian]{babel} % Consente l'uso caratteri accentati italiani
+
+% Simpler bibsection for CV sections
+% (thanks to natbib for inspiration)
+\makeatletter
+\newlength{\bibhang}
+\setlength{\bibhang}{1em}
+\newlength{\bibsep}
+ {\@listi \global\bibsep\itemsep \global\advance\bibsep by\parsep}
+\newenvironment{bibsection}%
+        {\vspace{-\baselineskip}\begin{list}{}{%
+       \setlength{\leftmargin}{\bibhang}%
+       \setlength{\itemindent}{-\leftmargin}%
+       \setlength{\itemsep}{\bibsep}%
+       \setlength{\parsep}{\z@}%
+        \setlength{\partopsep}{0pt}%
+        \setlength{\topsep}{0pt}}}
+        {\end{list}\vspace{-.6\baselineskip}}
+\makeatother
+
+% Layout: Puts the section titles on left side of page
+\reversemarginpar
+
+%
+%         PAPER SIZE, PAGE NUMBER, AND DOCUMENT LAYOUT NOTES:
+%
+% The next \usepackage line changes the layout for CV style section
+% headings as marginal notes. It also sets up the paper size as either
+% letter or A4. By default, letter was used. If A4 paper is desired,
+% comment out the letterpaper lines and uncomment the a4paper lines.
+%
+% As you can see, the margin widths and section title widths can be
+% easily adjusted.
+%
+% ALSO: Notice that the includefoot option can be commented OUT in order
+% to put the PAGE NUMBER *IN* the bottom margin. This will make the
+% effective text area larger.
+%
+% IF YOU WISH TO REMOVE THE ``of LASTPAGE'' next to each page number,
+% see the note about the +LP and -LP lines below. Comment out the +LP
+% and uncomment the -LP.
+%
+% IF YOU WISH TO REMOVE PAGE NUMBERS, be sure that the includefoot line
+% is uncommented and ALSO uncomment the \pagestyle{empty} a few lines
+% below.
+%
+
+%% Use these lines for letter-sized paper
+\usepackage[paper=letterpaper,
+            %includefoot, % Uncomment to put page number above margin
+            marginparwidth=1.2in,     % Length of section titles
+            marginparsep=.05in,       % Space between titles and text
+            margin=1in,               % 1 inch margins
+            includemp]{geometry}
+
+%% Use these lines for A4-sized paper
+%\usepackage[paper=a4paper,
+%            %includefoot, % Uncomment to put page number above margin
+%            marginparwidth=30.5mm,    % Length of section titles
+%            marginparsep=1.5mm,       % Space between titles and text
+%            margin=25mm,              % 25mm margins
+%            includemp]{geometry}
+
+%% More layout: Get rid of indenting throughout entire document
+\setlength{\parindent}{0in}
+
+%% This gives us fun enumeration environments. compactitem will be nice.
+\usepackage{paralist}
+
+%% Reference the last page in the page number
+%
+% NOTE: comment the +LP line and uncomment the -LP line to have page
+%       numbers without the ``of ##'' last page reference)
+%
+% NOTE: uncomment the \pagestyle{empty} line to get rid of all page
+%       numbers (make sure includefoot is commented out above)
+%
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+%\pagestyle{empty}      % Uncomment this to get rid of page numbers
+\fancyhf{}\renewcommand{\headrulewidth}{0pt}
+\fancyfootoffset{\marginparsep+\marginparwidth}
+\newlength{\footpageshift}
+\setlength{\footpageshift}
+          {0.5\textwidth+0.5\marginparsep+0.5\marginparwidth-2in}
+\lfoot{\hspace{\footpageshift}%
+       \parbox{4in}{\, \hfill %
+                    \arabic{page} of \protect\pageref*{LastPage} % +LP
+%                    \arabic{page}                               % -LP
+                    \hfill \,}}
+
+% Finally, give us PDF bookmarks
+\usepackage{color,hyperref}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.3}
+\hypersetup{colorlinks,breaklinks,
+            linkcolor=darkblue,urlcolor=darkblue,
+            anchorcolor=darkblue,citecolor=darkblue}
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% The title (name) with a horizontal rule under it
+% (optional argument typesets an object right-justified across from name
+%  as well)
+%
+% Usage: \makeheading{name}
+%        OR
+%        \makeheading[right_object]{name}
+%
+% Place at top of document. It should be the first thing.
+% If ``right_object'' is provided in the square-braced optional
+% argument, it will be right justified on the same line as ``name'' at
+% the top of the CV. For example:
+%
+%       \makeheading[\emph{Curriculum vitae}]{Your Name}
+%
+% will put an emphasized ``Curriculum vitae'' at the top of the document
+% as a title. Likewise, a picture could be included:
+%
+%   \makeheading[\includegraphics[height=1.5in]{my_picutre}]{Your Name}
+%
+% the picture will be flush right across from the name.
+\newcommand{\makeheading}[2][]%
+        {\hspace*{-\marginparsep minus \marginparwidth}%
+         \begin{minipage}[t]{\textwidth+\marginparwidth+\marginparsep}%
+             {\large \bfseries #2 \hfill #1}\\[-0.15\baselineskip]%
+                 \rule{\columnwidth}{1pt}%
+         \end{minipage}}
+
+% The section headings
+%
+% Usage: \section{section name}
+%
+% Follow this section IMMEDIATELY with the first line of the section
+% text. Do not put whitespace in between. That is, do this:
+%
+%       \section{My Information}
+%       Here is my information.
+%
+% and NOT this:
+%
+%       \section{My Information}
+%
+%       Here is my information.
+%
+% Otherwise the top of the section header will not line up with the top
+% of the section. Of course, using a single comment character (%) on
+% empty lines allows for the function of the first example with the
+% readability of the second example.
+\renewcommand{\section}[2]%
+        {\pagebreak[3]\vspace{1.3\baselineskip}%
+         \phantomsection\addcontentsline{toc}{section}{#1}%
+         \hspace{0in}%
+         \marginpar{
+         \raggedright \scshape #1}#2}
+
+% An itemize-style list with lots of space between items
+\newenvironment{outerlist}[1][\enskip\textbullet]%
+        {\begin{itemize}[#1]}{\end{itemize}%
+         \vspace{-.6\baselineskip}}
+
+% An environment IDENTICAL to outerlist that has better pre-list spacing
+% when used as the first thing in a \section
+\newenvironment{lonelist}[1][\enskip\textbullet]%
+        {\vspace{-\baselineskip}\begin{list}{#1}{%
+        \setlength{\partopsep}{0pt}%
+        \setlength{\topsep}{0pt}}}
+        {\end{list}\vspace{-.6\baselineskip}}
+
+% An itemize-style list with little space between items
+\newenvironment{innerlist}[1][\enskip\textbullet]%
+        {\begin{compactitem}[#1]}{\end{compactitem}}
+
+% An environment IDENTICAL to innerlist that has better pre-list spacing
+% when used as the first thing in a \section
+\newenvironment{loneinnerlist}[1][\enskip\textbullet]%
+        {\vspace{-\baselineskip}\begin{compactitem}[#1]}
+        {\end{compactitem}\vspace{-.6\baselineskip}}
+
+% To add some paragraph space between lines.
+% This also tells LaTeX to preferably break a page on one of these gaps
+% if there is a needed pagebreak nearby.
+\newcommand{\blankline}{\quad\pagebreak[3]}
+\newcommand{\halfblankline}{\quad\vspace{-0.5\baselineskip}\pagebreak[3]}
+
+% Uses hyperref to link DOI
+\newcommand\doilink[1]{\href{http://dx.doi.org/#1}{#1}}
+\newcommand\doi[1]{doi:\doilink{#1}}
+
+% For \url{SOME_URL}, links SOME_URL to the url SOME_URL
+\providecommand*\url[1]{\href{#1}{#1}}
+% Same as above, but pretty-prints SOME_URL in teletype fixed-width font
+\renewcommand*\url[1]{\href{#1}{\texttt{#1}}}
+
+% For \email{ADDRESS}, links ADDRESS to the url mailto:ADDRESS
+\providecommand*\email[1]{\href{mailto:#1}{#1}}
+% Same as above, but pretty-prints ADDRESS in teletype fixed-width font
+%\renewcommand*\email[1]{\href{mailto:#1}{\texttt{#1}}}
+
+%\providecommand\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+%    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+%\providecommand\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+%    \TeX}}
+\providecommand\BibTeX{{B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    \TeX}}
+\providecommand\Matlab{\textsc{Matlab}}
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Begin CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\makeheading{Danilo Pianini}
+
+\section{Contatti}
+%
+% NOTE: Mind where the & separators and \\ breaks are in the following
+%       table.
+%
+% ALSO: \rcollength is the width of the right column of the table
+%       (adjust it to your liking; default is 1.85in).
+%
+\newlength{\rcollength}\setlength{\rcollength}{2.5in}%
+%
+\begin{tabular}[t]{@{}p{\textwidth-\rcollength}p{\rcollength}}
+%\href{http://www.cse.osu.edu/}%
+%     {Department of Computer Science and Engineering} & \\
+%\href{http://www.osu.edu/}{The Ohio State University}
+                           
+Via Venezia, 52          & \textit{Telefono:} +39 320 4136573\\
+47521 Cesena (FC)          & \textit{E-mail:} \email{danilo.pianini@unibo.it}\\
+Italy                      & \textit{WWW:} \href{http://www.danilopianini.org/}{www.danilopianini.org}\\
+\end{tabular}
+
+\section{Obiettivo}
+%
+Posizione accademica che consenta ricerca di frontiera nell'ambito del pervasive computing (incluse modellazione, analisi, design e verifica), con particolare attenzione ad aspetti di ingegneria (inclusi linguaggi, automazione dei processi di sviluppo, e simulazione).
+
+\section{Cittadinanza}
+Italiana
+
+\section{Attività di ricerca}
+%
+L'attività di ricerca di Danilo Pianini è orientata all'ingegneria di sistemi pervasivi, situati e complessi, composti da numerose entità eterogenee.
+
+Una delle contingenze da affrontare al fine di ingegnerizzare il processo di creazione di sistemi auto-organizzanti riguarda la soluzione del problema ``local to global'': si desidera programmare il comportamento di una molteplicità di entità partecipanti un sistema, ma il designer vorrebbe concentrarsi esclusivamente sul goal di livello globale, lasciando a strumenti automatici la gestione di dettagli relativi all'interazione fra device a basso livello. Gestire direttamente il livello di interazione fra device, infatti, è difficilmente percorribile in caso di larghi agglomerati di dispositivi (si pensi ad un’area urbana), mentre la scrittura di un software uguale per ogni device che ottenga il comportamento globale desiderato è complicata e le metodologie esistenti, come quella proposta dal progetto europeo SAPERE \cite{ZambonelliPMC2015}, forniscono solo un parziale indirizzo.
+
+L’attività di ricerca di Danilo Pianini, cominciata all'interno del progetto europeo suddetto, ha come obiettivo principale quello di esplorare le potenzialità di paradigmi avanzati per la concezione aggregata del software, non solo dal punto di vista teorico ma da quello pratico e applicativo, elaborando sia metodologie che strumenti a supporto delle suddette.
+In particolare, l'attività col progetto SAPERE ha portato nel alla realizzazione del simulatore Alchemist \cite{PianiniJOS2013}, e di fatto all'avvio del filone di attività sugli strumenti per l'ingegneria dei sistemi distribuiti di cui Pianini è attualmente principal investigator all'interno del gruppo di ricerca con cui collabora. Nell'ambito del progetto, Pianini si è occupato anche della gestione dei rapporti con il partner di Linz, vincendo un finanziamento Marco Polo e trascorrendo tre mesi nel gruppo di ricerca coordinato dal prof. Alois Ferscha, rapporto culminato con la pubblicazione di uno studio sulla predizione del movimento di folle \cite{AnzengruberSocInfo2013}.
+
+Alla conclusione del progetto europeo, l'attività di ricerca di Pianini è proseguita focalizzandosi sulla branca emergente dell'aggregate computing \cite{ViroliCoordination2012}. Il lavoro ha portato ad una fruttuosa collaborazione col gruppo di ricerca guidato dal Dr. Jacob Beal di Raytheon BBN Technologies a Boston, che ha consentito di vincere un secondo finanziamento Marco Polo, utilizzato per trascorrere un periodo di ricerca di tre mesi presso il suddetto centro di ricerca. L'attività di ricerca all'estero è stata coronata dall'ideazione ed implementazione del linguaggio di programmazione Protelis \cite{PianiniSAC2015}, prima implementazione concreta dell'higher-order Field Calculus \cite{DamianiFORTE2015} e tutt'ora parte (assieme al simulatore Alchemist) della catena di strumenti utilizzata per il design, l'analisi e l'implementazione di sistemi software pervasivi.
+
+Pianini collabora tutt'ora con gruppi di ricerca sia italiani (ad esempio, quelli guidati dal prof. Ferruccio Damiani dell'Università di Torino \cite{TOMACS2018} e dal prof. Franco Zambonelli dell'Università di Modena e Reggio Emilia \cite{ViroliSCP2015}) che stranieri (ad esempio, quelli guidati dal Dr. Jacob Beal \cite{BealIEEEComputer2015} e dal prof. Simon Dobson dell'Università di St Andrews \cite{SASO2017-counting}). I buoni risultati scientifici ottenuti, testimoniati anche dall'ottenimento del premio per il miglior articolo alla conferenza SASO 2016 \cite{BealSASO2016} (su 20 articoli accettati e 65 sottoposti), hanno consentito di ottenere negli anni 2015, 2016, 2017, e 2018 il co-finanziamento dell'assegno di ricerca da parte del Dipartimento di Ingegneria e Scienze Informatiche dell'Università di Bologna.
+
+\section{Istruzione}
+%
+\href{http://www.deis.unibo.it/DEIS/default.htm}{\textbf{Dipartimento di Ingegneria Elettronica, Informatica e delle Telecomunicazioni, Università di Bologna}}, Bologna (BO), Italy
+\begin{outerlist}
+\item[] Dottorato di ricerca in
+        \href{http://www.cse.unibo.it/en/phd-program}
+             {Elettronica, Informatica e Telecomunicazioni},
+        \begin{innerlist}
+        \item Tesi: \href{http://amsdottorato.unibo.it/7000/#}{\emph{Engineering Complex Computational Ecosystems}}
+        \item Supervisore:
+              \href{http://mirkoviroli.apice.unibo.it/}{Prof. Mirko Viroli}
+        \item Tutor:
+              \href{http://lia.deis.unibo.it/Staff/AntonioNatali/}{Prof. Antonio Natali}
+        \item Revisore esterno:
+              \href{http://cui.unige.ch/~dimarzo/}{Prof. Giovanna di Marzo Serugendo}
+        \item Revisore esterno:
+              \href{http://www.simondobson.org/}{Prof. Simon Dobson}
+        \item Ramo di studi: Pervasive computing
+        \end{innerlist}
+
+\halfblankline{}
+\end{outerlist}
+\href{http://www.ing2.unibo.it/Ingegneria+Cesena/default.htm}{\textbf{Seconda Facoltà di Ingegneria, Università di Bologna}}, Cesena (FC), Italy
+\begin{outerlist}
+\item[] Laurea specialistica,
+        \href{http://www.ing2.unibo.it/Ingegneria+Cesena/default.htm}
+             {Ingegneria informatica}, Marzo 2011
+        \begin{innerlist}
+        \item \emph{110/110 e lode}
+        \item Tesi: \emph{A Framework for Simulation of Pervasive Services Ecosystems}
+        \item Supervisor:
+              \href{http://mirkoviroli.apice.unibo.it/}
+                   {Dr. Mirko Viroli}
+        \item Tesi in linguaggi e modelli computazionali
+        \end{innerlist}
+
+\item[] Laurea triennale,
+        \href{http://www.ing2.unibo.it/Ingegneria+Cesena/default.htm}
+             {Software Engineering}, October 2008
+        \begin{innerlist}
+        \item Tesi: \emph{From Swarm Intelligence to Self-Organising Coordination: a Pervasive Scenarios Application}
+        \item Supervisore:
+              \href{http://apice.unibo.it/xwiki/bin/view/AndreaOmicini/}
+                   {Prof. Andrea Omicini}
+        \item Tesi in sistemi distribuiti
+        \end{innerlist}
+
+\halfblankline
+\end{outerlist}
+\href{http://www.iiseinaudi.it/}{\textbf{ITCG L. Einaudi}}, Novafeltria (RN), Italy
+\begin{outerlist}
+ \item [ ] Senior high school specializing in science education with focus on biology, July 2005
+        \begin{innerlist}
+	  \item 100/100
+        \end{innerlist}
+\end{outerlist}
+
+ \vspace{0.1in}
+ \section{Elenco delle pubblicazioni}
+ \renewcommand{\section}[2]{}
+ \nocite{*}
+ \vspace{-0.29in}
+ \bibliographystyle{IEEEtran}
+ \bibliography{bibliography}
+ \vspace{0.1in}
+
+\renewcommand{\section}[2]%
+        {\pagebreak[3]\vspace{1.3\baselineskip}%
+         \phantomsection\addcontentsline{toc}{section}{#1}%
+         \hspace{0in}%
+         \marginpar{
+         \raggedright \scshape #1}#2}
+
+\section{Attività editoriale}
+\href{https://www.hindawi.com/journals/sp/}{\textbf{Scientific programming}}: Membro del comitato editoriale --- dal 2017
+
+\section{{\color{black}Servizio in conferenze internazionali}}
+\href{http://diid.unipa.it/roboticslab/woa2018/}{XIX Workshop "From Objects to Agents" (WOA 2018)}
+\\ Program Committee member \\
+\halfblankline \\
+\href{https://saso2018.fbk.eu/}{12th IEEE International Conference on Self-Adaptive and Self-Organizing (SASO 2018)}
+\\ Workshops and tutorials chair \\
+\halfblankline \\
+\href{http://icac2018.informatik.uni-wuerzburg.de/committees/organization-committee/}{15th IEEE International Conference on Autonomic Computing (ICAC 2018)}
+\\ Workshops and tutorials chair \\
+\halfblankline \\
+\href{http://sac-cas2018.apice.unibo.it/referees.html}{Collective and Cooperative Systems --- Special Track of the 33rd ACM Symposium on Applied Computing (SAC 2018)}
+\\ Program Committee member, session chair \\
+\halfblankline \\
+\href{http://apice.unibo.it/xwiki/bin/view/ALP4IoT2016/WebHome}{1st workshop on Architectures, Languages and Paradigms for IoT (ALP4IoT 2017)}
+\\ Program Committee chair \\
+\halfblankline \\
+\href{http://apice.unibo.it/xwiki/bin/view/ECAS2017/WebHome}{2nd eCAS Workshop on Engineering Collective Adaptive Systems (eCAS 2017)}
+\\ Program Committee member \\
+\halfblankline \\
+\href{http://woa2017.unirc.it/}{XVIII WORKSHOP "From Objects to Agents" (WOA 2017)}
+\\ Program Committee member \\
+
+\section{Revisore per riviste internazionali}
+\href{https://www.journals.elsevier.com/artificial-intelligence-in-medicine/}{\textbf{Artificial Intelligence in Medicine}}, 2018
+\\ \halfblankline \\
+\href{https://www.hindawi.com/journals/mpe/}{\textbf{Mathematical Problems in Engineering}}, 2017
+\\ \halfblankline \\
+\href{http://www.mdpi.com/journal/sensors}{\textbf{Sensors}}, 2016-2017
+\\ \halfblankline \\
+\href{https://www.journals.elsevier.com/computational-and-structural-biotechnology-journal/}{\textbf{Computational and Structural Biotechnology Journal}}, 2016
+\\ \halfblankline \\
+\href{http://cacm.acm.org/}{\textbf{Communications of the ACM}}, 2016
+
+\section{Interventi in conferenze internazionali}
+Themes and Challenges in Engineering CAS \\
+Panelist at the \href{http://apice.unibo.it/xwiki/bin/view/ECAS2017/WebHome}{\textit{2nd eCAS Workshop on Engineering Collective Adaptive Systems (eCAS 2017)}}
+\\ \halfblankline \\
+\href{https://www.slideshare.net/DanySK/practical-aggregate-programming-with-protelis-saso2017}{Practical Aggregate Programming with Protelis} \\
+Tutorial at the \href{http://apice.unibo.it/xwiki/bin/view/ECAS2017/WebHome}{\textit{11th IEEE International Conference on Self-Adaptive and Self-Organizing Systems (SASO 2017)}}
+\\ \halfblankline \\
+\href{https://www.slideshare.net/DanySK/2nd-ecas-workshop-on-engineering-collective-adaptive-systems}{Towards a Foundational API for Resilient Distributed Systems Design} \\
+\href{http://apice.unibo.it/xwiki/bin/view/ECAS2017/WebHome}{\textit{2nd eCAS Workshop on Engineering Collective Adaptive Systems (eCAS 2017)}}
+\\ \halfblankline \\
+\href{https://www.slideshare.net/DanySK/simulating-largescale-aggregate-mass-with-alchemist-and-scala}{Simulating Large-scale Aggregate MASs with Alchemist and Scala} \\
+\href{https://fedcsis.org/2016/mass}{\textit{10th International Workshop on Multi-Agent Systems and Simulation (MAS\&S 2016)}}
+\\ \halfblankline \\
+\href{https://www.slideshare.net/DanySK/computational-fields-meet-augmented-reality-perspectives-and-challenges}{Computational Fields meet Augmented Reality: Perspectives and Challenges} \\
+\href{http://www.spatial-computing.org/scopes}{\textit{1st Workshop on Spatial and COllective PErvasive Computing Systems (SCOPES 2015)}}
+\\ \halfblankline \\
+\href{http://apice.unibo.it/xwiki/bin/download/PRIMA2015/Demos/Pianini.pdf}{Engineering multi-agent systems with aggregate computing} \\
+Demo at the \href{http://apice.unibo.it/xwiki/bin/view/PRIMA2015/Demos}{\textit{18th Conference on Principles and Practice of Multi-Agent Systems (PRIMA 2015)}}
+\\ \halfblankline \\
+\href{https://www.slideshare.net/DanySK/extending-the-gillespies-stochastic-simulation-algorithm-for-integrating-discreteevent-and-multiagent-based-simulation}{Extending the Gillespie's Stochastic Simulation Algorithm for Integrating Discrete-Event and Multi-Agent Based Simulation} \\
+\href{http://www.springer.com/gp/book/9783319314464}{\textit{XVI International Workshop on Multi-Agent Based Simulation (MABS 2015)}}
+\\ \halfblankline \\
+\href{https://www.slideshare.net/DanySK/sac-47194849}{Protelis: Practical Aggregate Programming} \\
+\href{https://www.sigapp.org/sac/sac2015/}{\textit{The 30th ACM/SIGAPP Symposium On Applied Computing (SAC 2015)}}
+\\ \halfblankline \\
+\href{https://www.slideshare.net/DanySK/gradientbased-selforganisation-patterns-of-anticipative-adaptation}{Gradient-based Self-organisation Patterns of Anticipative Adaptation} \\
+\href{http://saso2012.univ-lyon1.fr/}{\textit{6th IEEE International Conference on Self-Adaptive and Self-Organizing Systems (SASO 2012)}}
+\\ \halfblankline \\
+\href{http://apice.unibo.it/xwiki/bin/view/Talks/PianiniMass2011}{A Chemical Inspired Simulation Framework for Pervasive Services Ecosystems} \\
+\href{https://fedcsis.org/2011/}{\textit{5th International Workshop on Multi-Agent Systems and Simulation (MAS\&S 2011)}}
+\\ \halfblankline \\
+\href{http://apice.unibo.it/xwiki/bin/view/Talks/PianiniVirrusoSASO10}{Self Organization in Coordination Systems using a WordNet-based Ontology} \\
+\href{http://www.inf.u-szeged.hu/projectdirs/saso10/}{\textit{Fourth IEEE International Conference on Self-Adaptive and Self-Organizing Systems (SASO 2010)}}
+
+\section{Altre presentazioni}
+\href{https://www.slideshare.net/DanySK/continuous-integration-and-delivery-77394349}{Continuous integration and delivery} \\
+Seminario per il corso ``\href{http://apice.unibo.it/xwiki/bin/view/Courses/PPS1617}{Programming and development paradigms}'', 2017
+\\ \halfblankline \\
+\href{https://www.slideshare.net/DanySK/democratic-process-and-electronic-platforms-concerns-of-an-engineer}{Democratic process and electronic platforms: concerns of an engineer} \\
+Workshop ``\href{https://sites.google.com/site/futureofdemocracy2016/home/workshop}{The Future of Democracy}'', 2016
+\\ \halfblankline \\
+\href{https://www.slideshare.net/DanySK/software-development-made-serious}{Software development made serious} \\
+Seminario per il corso ``\href{http://apice.unibo.it/xwiki/bin/view/Courses/ISAC1516}{Adaptive complex software systems engineering}'' course, 2016
+\\ \halfblankline \\
+\href{https://www.slideshare.net/DanySK/engineering-complex-computational-ecosystems-phd-defense}{Engineering Complex Computational Ecosystems} \\
+PhD defense, 2015
+\\ \halfblankline \\
+\href{https://www.slideshare.net/DanySK/engineering-computational-ecosystems-2nd-year-ph-d-seminar}{Engineering computational ecosystems} \\
+2nd year PhD seminar, 2013
+\\ \halfblankline \\
+\href{http://campus.unibo.it/115195/}{From Engineer to Alchemist, There and Back Again: An Alchemist Tale} \\
+Seminario per il corso di ``\href{http://apice.unibo.it/xwiki/bin/view/Courses/LsaLm1213}{Laboratory of systems and applications LM}'', 2012
+\\ \halfblankline \\
+\href{https://www.slideshare.net/DanySK/engineering-computational-ecosystems}{Engineering computational ecosystems} \\
+Vieni via con noi, 2012, Cesena
+\\ \halfblankline \\
+\href{https://www.slideshare.net/DanySK/recipes-for-sabayon-cook-your-own-linux-distro-within-two-hours}{Recipes for Sabayon: cook your own Linux distro within two hours} \\
+Linux Day 2012, Cesena
+\\ \halfblankline \\
+\href{http://campus.unibo.it/83921/}{The simulation alchemy} \\
+Seminario per il corso ``\href{http://apice.unibo.it/xwiki/bin/view/Courses/LsaLm1112}{Laboratory of systems and applications LM}'', 2011
+\\ \halfblankline \\
+\href{http://apice.unibo.it/xwiki/bin/view/Talks/PianiniWoa2011}{A Simulation Framework for Pervasive Service Ecosystems} \\
+\href{http://www.inf.u-szeged.hu/projectdirs/saso10/}{\textit{XII Workshop ``Dagli Oggetti agli Agenti''} (WOA 2010)}
+
+
+\section{Didattica}
+\href{http://www.unibo.it/Portale/default.htm}{\textbf{Alma Mater Studiorum Università di Bologna}}, Bologna (BO), Italy
+\begin{outerlist}
+\item[] \textit{Assegnista di ricerca post-doc} \hfill \textbf{da gennaio 2015}
+    \begin{innerlist}
+      \item Correlatore di \href{http://amslaurea.unibo.it/14682/}{Niccolò Maltoni: \textit{Progettazione object-oriented di un'interfaccia grafica JavaFX per il simulatore Alchemist}}, 2017.
+      \item Correlatore di \href{http://amslaurea.unibo.it/14673/}{Luca Semprini: \textit{Una panoramica su Kotlin: il nuovo linguaggio per lo sviluppo di applicazioni Android}}, 2017.
+      \item Correlatore di \href{http://amslaurea.unibo.it/14329/}{Andrea Placuzzi: \textit{Integrazione dei formati di navigazione GPS standard in Alchemist}}, 2017.
+      \item Correlatore di \href{http://amslaurea.unibo.it/14019/}{Giacomo Scaparrotti: \textit{Studio delle prestazioni del simulatore Alchemist: ottimizzazione di routing e caching}}, 2017.
+      \item Correlatore di \href{http://amslaurea.unibo.it/13090/}{Matteo Francia: \textit{A Foundational Library for Aggregate Programming}}, 2017.
+      \item Professore a contratto per il corso ``\href{http://apice.unibo.it/xwiki/bin/view/Courses/OOP1718}{Object-Oriented Programming}'', 2017.
+      \item Professore a contratto per il corso ``\href{http://apice.unibo.it/xwiki/bin/view/Courses/OOP1617}{Object-Oriented Programming}'', 2016.
+      \item Correlatore di \href{http://amslaurea.unibo.it/12310/}{Elisa Casadio: \textit{Revisione e refactoring dell'interfaccia utente del simulatore Alchemist}}, 2016.
+      \item Correlatore di \href{http://amslaurea.unibo.it/12503/}{Gianluca Grossi: \textit{Sviluppo di plugin per IntelliJ IDEA}}, 2016.
+      \item Correlatore di \href{http://amslaurea.unibo.it/10519/}{Simone Costanzi: \textit{Integrazione di piattaforme d'esecuzione e simulazione in una toolchain Scala per aggregate programming}}, 2016.
+      \item Correlatore di \href{http://amslaurea.unibo.it/10481/}{Giovanni Romio: \textit{Backport di una applicazione da Java 8 a Java 7}}, 2016.
+      \item Professore a contratto per il corso ``\href{http://apice.unibo.it/xwiki/bin/view/Courses/ISAC1516}{Complex Adaptive Software System Engineering}'', 2016.
+      \item Assistente del corso ``\href{http://apice.unibo.it/xwiki/bin/view/Courses/OOP1516}{Object-Oriented Programming}'', 2015.
+      \item Professore a contratto per il corso ``\href{http://www.apice.unibo.it/xwiki/bin/view/Courses/FINFA1415/}{Computer Science Foundations A}'', 2015.
+      \item Assistente del corso ``\href{http://apice.unibo.it/xwiki/bin/view/Courses/ISAC1415}{Complex Adaptive Software System Engineering}'', 2015.
+    \end{innerlist}
+\item[] \textit{Studente di dottorato} \hfill \textbf{da gennaio 2012 a dicembre 2014}
+    \begin{innerlist}
+      \item Assistente del corso ``\href{http://apice.unibo.it/xwiki/bin/view/Courses/OOP1415}{Object Oriented Programming}'', 2014.
+      \item Assistente del corso ``\href{http://apice.unibo.it/xwiki/bin/view/Courses/ISAC1314}{Complex Adaptive Software System Engineering }'', 2014.
+      \item Assistente del corso ``\href{http://apice.unibo.it/xwiki/bin/view/Courses/OOP1314}{Object Oriented Programming}'', 2013.
+      \item Assistente del corso ``\href{http://www.apice.unibo.it/xwiki/bin/view/Courses/FINFA1213/}{Computer Science Foundations A}'', 2013.
+      \item Correlatore di \href{http://amslaurea.unibo.it/7990/}{Davide Ensini: \textit{Spatial computing per smart devices}}, 2014.
+      \item Correlatore di \href{http://amslaurea.unibo.it/6927/}{Luca Nenni: \textit{Simulazioni realistiche di algoritmi di Crowd Steering}}, 2014.
+      \item Correlatore di \href{http://amslaurea.unibo.it/5293/}{Enrico Polverelli: \textit{Simulazione di algoritmi di auto-organizzazione basati su gradiente computazionale in Alchemist}}, 2012.
+      \item Correlatore di \href{http://amslaurea.unibo.it/4217/}{Andrea Dallatana: \textit{BDI agents for Real Time Strategy games}}, 2012.
+      \item Correlatore di \href{http://amslaurea.unibo.it/4088/}{Francesca Cioffi: \textit{Algoritmi gradient-based per la modellazione e simulazione di sistemi auto-organizzanti}}, 2012.
+      \item Correlatore di \href{http://amslaurea.unibo.it/4074/}{Paolo Contessi: \textit{Supporting semantic web technologies in the pervasive service ecosystems middleware}}, 2012.
+      \item Correlatore di \href{http://www.alice.unibo.it/xwiki/bin/view/Theses/ProntiAlchemistSapere/}{Giacomo Pronti: \textit{Simulazione di ecosistemi di servizi pervasivi con supporto ad annotazioni tuple based}}, 2012.
+      \item Correlatore di Francesco Cardi, 2012.
+    \end{innerlist}
+\item[] \textit{Assegnista di ricerca} \hfill \textbf{da giugno 2011 a dicembre 2012}
+    \begin{innerlist}
+      \item Contract professor for the course ``\href{http://apice.unibo.it/xwiki/bin/view/Courses/SmaLm1112Lab}{Laboratory of Multi Agent Systems}'', 2011.
+      \item Correlatore di in \href{http://apice.unibo.it/xwiki/bin/view/Theses/SapereComm}{Michele Morgagni: \textit{Modulo di comunicazione in una infrastruttura per pervasive service ecosystems}}, 2011.
+      \item Correlatore di in \href{http://www.alice.unibo.it/xwiki/bin/view/Theses/LSAspace}{Matteo Desanti: \textit{Supporto a regole chimico-semantiche per la coordinazione di service pervasive ecosystems}}, 2011.
+    \end{innerlist}
+\halfblankline
+\end{outerlist}
+
+\href{http://www.formart.it/}{\textbf{FORMart}}, Cesena (FC), Italy
+\begin{outerlist}
+\item[] \textit{Insegnante} \hfill \textbf{da gennaio 2016 a marzo 2018}
+    \begin{innerlist}
+        \item \textit{``Programmazione e ICT problem solving''}
+        \item \textit{``Sistemi informatici e loro gestione''}
+        \item \textit{``Elementi di Programmazione e Sviluppo di Applicazioni''}
+    \end{innerlist}
+\halfblankline
+\end{outerlist}
+
+\href{http://www.uiowa.edu/}{\textbf{University of Iowa}}, Iowa City, IA USA
+\begin{outerlist}
+ \item[] \textit{Visiting Researcher} \hfill \textbf{da agosto 2014 a settembre 2014}
+    \begin{innerlist}
+      \item Seminario ``Programming Networks from the Aggregate Perspective''
+    \end{innerlist}
+\halfblankline
+\end{outerlist}
+
+\href{http://www.fit.edu/}{\textbf{Florida Institute of Technology}}, Melbourne, FL USA
+\begin{outerlist}
+ \item[] \textit{Visiting Researcher} \hfill \textbf{da luglio 2009 ad ottobre 2009}
+    \begin{innerlist}
+      \item Seminar ``Self Organization in Coordination Systems using a Wordnet-based Ontology'', along with Sascia Virruso, under the supervision of Dr. Ronaldo Menezes
+    \end{innerlist}
+\halfblankline
+\end{outerlist}
+
+\section{Premi}
+Best Paper Award, \href{https://saso2016.informatik.uni-augsburg.de/}{\textbf{SASO 2016}}, Augsburg, Germany
+
+\section{Esperienze all'estero}
+\href{http://www.uiowa.edu/}{\textbf{University of Iowa}}, Iowa City, IA USA
+\begin{outerlist}
+\item[] \textit{Visiting Researcher} \hfill \textbf{da maggio 2016 a giugno 2016}
+\\
+
+\end{outerlist}
+
+\href{http://www.uiowa.edu/}{\textbf{University of Iowa}}, Iowa City, IA USA
+\begin{outerlist}
+\item[] \textit{Visiting Researcher} \hfill \textbf{da agosto 2014 a settembre 2014}
+\\
+
+\end{outerlist}
+
+\href{http://www.bbn.com/}{\textbf{Raytheon BBN Technologies}}, Cambridge, MA USA
+\begin{outerlist}
+\item[] \textit{Visiting Researcher} \hfill \textbf{da giugno 2014 ad agosto 2014}
+\\
+
+\end{outerlist}
+
+\href{http://www.jku.at/}{\textbf{Johannes Kepler Universität}}, Linz, Austria
+\begin{outerlist}
+\item[] \textit{Visiting Researcher} \hfill \textbf{da luglio 2013, ad ottobre 2013}
+\\
+
+\end{outerlist}
+
+\href{http://www.fit.edu/}{\textbf{Florida Institute of Technology}}, Melbourne, FL USA
+\begin{outerlist}
+\item[] \textit{Visiting Researcher} \hfill \textbf{da luglio 2009 ad ottobre 2009}
+\\
+
+\end{outerlist}
+
+\section{Esperienze professionali}
+\href{http://www.twinlogix.com/en}{\textbf{twinlogix}}, Santarcangelo di Romagna (RN), Italy
+\begin{outerlist}
+\item[] \textit{Sviluppo software, generatori di codice}%
+        \hfill \textbf{da marzo 2016 a gennaio 2017}
+\end{outerlist}
+\halfblankline
+
+\href{http://www.valpharma.com/}{\textbf{Valpharma International S.p.A.}}, Pennabilli (RN), Italy
+\begin{outerlist}
+\item[] \textit{Stage nel reparto controllo qualità materie prime}%
+        \hfill \textbf{da luglio 2004 ad agosto 2004}
+\end{outerlist}
+\halfblankline
+
+\section{Altre attività}
+
+Diversi contributi a \href{http://www.wikipedia.org/}{Wikipedia} e \href{http://www.openstreetmap.org/}{OpenStreetMap}.
+
+\halfblankline{}
+
+Ha contribuito a \href{https://github.com/DanySK/Thread-Inheritable-Resource-Loader-for-Java}{Thread-inheritable resource loader for Java}, 2017--in corso
+\begin{innerlist}
+    \item Un caricatore di classi Java usabile staticamente ed in grado di ereditare il caricatore di classi del thread padre.
+\end{innerlist}
+\halfblankline
+
+Ha contribuito a \href{https://github.com/farkam135/GoIV}{GoIV}, 2017
+\begin{innerlist}
+    \item Applicazione Android.
+\end{innerlist}
+\halfblankline
+
+Ha contribuito a \href{https://github.com/DanySK/gson-extras}{gson-extras}, 2017--in corso
+\begin{innerlist}
+    \item Componenti aggiuntivi per la libreria Google Gson, estratti dal repository Google  e resi pubblicamente disponibili su Maven Central.
+\end{innerlist}
+\halfblankline
+
+Creatore di \href{https://github.com/DanySK/jirf}{JIRF}, 2017--in corso
+\begin{innerlist}
+    \item La Java Implicit Reflective Factory consente di costruire riflessivamente oggetti Java all'interno di contesti configurabili, sfruttando catene di conversioni implicite fra tipi se necessario.
+\end{innerlist}
+\halfblankline
+
+Creatore di \href{https://github.com/DanySK/urlclassloader-util}{URLClassloader Util}, 2016--in corso
+\begin{innerlist}
+    \item Piccola libreria per manipolare il classpath di software Java 8 o precedente a runtime.
+\end{innerlist}
+\halfblankline
+
+Creatore di \href{https://github.com/DanySK/javadoc.io-linker}{Javadoc.io Linker}, 2016--in corso
+\begin{innerlist}
+    \item Javadoc.io linker è un plugin per Gradle in grado di far sì che la Javadoc generata dal sistema di build abbia collegamenti validi alle Javadoc di sorgenti non locali, andandoli a prendere da javadoc.io.
+\end{innerlist}
+\halfblankline
+
+Ha contribuito a \href{https://github.com/Antergos/Cnchi}{Cnchi}, 2015
+\begin{innerlist}
+    \item Cnchi è un installer per Linux, creato per la distribuzione Antergos basata su Arch.
+\end{innerlist}
+\halfblankline
+
+Creatore di \href{http://protelis.org/}{Protelis}, 2014--in corso
+\begin{innerlist}
+    \item Protelis è un linguaggio di programmazione aggregata \cite{PianiniSAC2015}.
+\end{innerlist}
+\halfblankline
+
+Creatore di \href{http://alchemist.apice.unibo.it/}{Alchemist}, 2010--in corso
+\begin{innerlist}
+    \item Alchemist è un simulatore innovativo che unisce l'espressività dei modelli ad agenti con la velocità e le tecniche dei simulatori stocastici per la chimica \cite{PianiniJOS2013}.
+\end{innerlist}
+\halfblankline
+
+Creatore di \href{https://github.com/DanySK/SmarTrRR}{SmarTrRR}, 2015--2017
+\begin{innerlist}
+    \item SmarTrRR è un risolutore di range di dipendenze transitive per Gradle.
+\end{innerlist}
+\halfblankline
+
+Creatore di \href{https://bitbucket.org/danysk/nirvana-overlay/}{Nirvana overlay} per Gentoo Linux, 2014--2015
+\begin{innerlist}
+    \item Nirvana è un overlay per Gentoo Linux, ossia un contenitore di files \texttt{ebuild} che descrivono la procedura di installazione di pacchetti mediante compilazione.
+\end{innerlist}
+\halfblankline
+
+Creatore del {Nirvana Community Repository}, 2014--2015
+\begin{innerlist}
+    \item Nirvana è un Community Repository per Sabayon Linux che contiene i pacchetti inclusi nell'overlay Nirvana, distribuiti in forma pre-compilata per il package manager Entropy.
+\end{innerlist}
+\halfblankline
+
+Creatore di \href{https://sourceforge.net/projects/mandelbrot/}{Angela the Mandelbrot Set Explorer}, 2009
+\begin{innerlist}
+  \item Angela è un'applicazione Java che sfrutta la computazione parallela per calcolare e visualizzare parti del set di Mandelbrot.
+\end{innerlist}
+\halfblankline
+
+Membro dei team di testing e di sviluppo di \href{http://www.sabayon.org/}{Sabayon Linux}, 2008--2014
+\begin{innerlist}
+  \item Sabayon Linux è una distribuzione basata su Gentoo che punta a rendere quest'ultimo alla portata di utenti comuni, fornendo software pre-installato e configurato ed un package manager binario.
+\end{innerlist}
+\halfblankline
+
+Cosigliere dell'associazione studentesca A.St.I.Ce., da gennaio 2006 a novembre 2009
+    \begin{innerlist}
+      \item Fondatore di ``I$^2$ --- Informa Ingegneri'', giornalino della seconda facoltà di ingegneria, contenente informazioni circa le attività di ricerca dei gruppi locali.
+      \item Fondatore di ``Linux Libera Tutti'', un progetto volto a fornire agli studenti accesso gratuito a DVD e CD di diverse distribuzioni Linux.
+    \end{innerlist}
+\halfblankline
+
+\section{Talenti}
+
+Programmazione e design del software:
+\begin{innerlist}
+    \item Java, Scala, Kotlin, C, Python, Prolog, Groovy, C$+$$+$, UNIX shell scripting, SQL, Xtend, e altri.
+    \item Creazione di nuovi linguaggi di programmazione tramite framework Xtext
+    \item Object Oriented design
+    \item Distributed systems
+    \item Concurrent programming
+    \item Functional programming
+    \item Mobile programming (Android)
+\end{innerlist}
+\halfblankline
+
+Ingegneria del software e lavoro di squadra produttivo:
+\begin{innerlist}
+    \item Distributed Version Control Systems (Mercurial, Git)
+    \item Build systems (Gradle, Maven)
+    \item Continuous Integration (Travis CI, drone.io)
+    \item Automated software deployment
+\end{innerlist}
+\halfblankline
+
+Configurazione Hardware e software:
+\begin{innerlist}
+    \item Linux installation and configuration for personal computers, servers, and embedded systems with specific skills for Gentoo Linux, its derivatives and Arch Linux.
+    \item Server and Desktop systems assembling
+    \item Windows installation and configuration
+    \item Overclocking
+\end{innerlist}
+\halfblankline
+
+Information/Internet Technology:
+\begin{innerlist}
+    \item Markup languages (XML, HTML, Markdown)
+    \item SQL
+    \item Networking (UDP, TCP, ARP, DNS)
+    \item Servizi (SQL, HTTP, application-specific daemon design)
+    \item Content Managing (Joomla, Drupal)
+    \item Static website generators (Jekyllrb)
+\end{innerlist}
+\halfblankline
+
+Sistemi operativi:
+\begin{innerlist}
+    \item Linux, with specific skills for Gentoo, Sabayon and Arch
+    \item other UNIX variants
+    \item Microsoft Windows family
+\end{innerlist}
+\halfblankline
+
+Produttività:
+\begin{innerlist}
+    \item \LaTeX{}, \BibTeX{}
+    \item Common productivity packages (for Windows and Linux platforms)
+\end{innerlist}
+\halfblankline
+
+Multimedia:
+\begin{innerlist}
+    \item Scalar image editing and analysis (Computer Vision skills, Photoshop, GIMP)
+    \item Vectorial image editing (Dia, Inkscape)
+    \item RAW image processing
+    \item Non-linear video editing (Kdenlive, Openshot)
+    \item 3D Design (Blender)
+    \item 3D Programming (OpenGL)
+\end{innerlist}
+
+
+\section{Conoscenze}
+Mathematics:
+\begin{innerlist}
+    \item Matematica applicata, analisi matematica, matematica discreta, geometria.
+\end{innerlist}
+\halfblankline
+
+Fisica:
+\begin{innerlist}
+    \item Meccanica classica, termodinamica, ed elettromagnetismo.
+\end{innerlist}
+\halfblankline
+
+Controllo e ottimizzazione distribuita:
+\begin{innerlist}
+    \item Controllo distribuito ed auto-adattativo, Ottimizzazione dinamica, Bio-mimicry, Bio-inspiration.
+\end{innerlist}
+\halfblankline
+
+Teoria dei segnali e telecomunicazioni:
+\begin{innerlist}
+    \item Probabilità, variabili aleatorie, processi stocastici, reti
+\end{innerlist}
+\halfblankline
+
+Computer Scienza ed ingegneria:
+\begin{innerlist}
+    \item Model Checking, Software Verification, Component-Based Reusable Software, Object Oriented Programming, Logic Programming, Functional Programming, Concurrent Programming, Distributed Systems, Benchmarking, Model Driven Software Development.
+\end{innerlist}
+\halfblankline
+
+Scienze naturali:
+\begin{innerlist}
+    \item Chimica orgnica e inorganica, basi di biologia molecolare, basi di microbiologia, basi di morfologia umana e fisiologia, basi di scienze della Terra, basi di astronomia.
+\end{innerlist}
+
+\section{Contatti per ulteriori informazioni}
+\href
+{http://web.mit.edu/jakebeal/www/}
+{\textbf{Dr. Jacob Beal}}
+(e-mail:~\href{mailto:jakebeal@alum.mit.edu}{jakebeal@alum.mit.edu}; phone: +1 617 873 7676)
+\begin{innerlist}
+    \item Scientist,
+        \href{http://www.bbn.com/}{Raytheon BBN Technologies}
+    \item[$\diamond$] 10 Moulton Street, Cambridge, MA 02138, USA
+    \item[$\star$] \emph{Il Dr. Beal è stato il mio supervisore esterno durante i periodi di ricerca negli Stati Uniti a Cambridge ed Iowa City}
+\end{innerlist}
+\halfblankline
+
+\href
+{http://apice.unibo.it/xwiki/bin/view/AndreaOmicini/}
+{\textbf{Prof. Andrea Omicini}}
+(e-mail:~\href{mailto:andrea.omicini@unibo.it}{andrea.omicini@unibo.it}; phone: +39 0547 3 39220)
+\begin{innerlist}
+    \item Full Professor,
+        \href{http://www.informatica.unibo.it/it}{Dipartimento di Informatica -- Scienza e Ingegneria}\\
+        \href{http://www.unibo.it/}{Alma Mater Studiorum Università di Bologna}
+
+    \item[$\diamond$] Via Venezia 52, 47521 Cesena (FC), Italy
+
+    \item[$\star$] \emph{Il Prof. Omicini è stato il supervisore della mia tesi triennale ed il responsabile italiano del mio periodo di ricerca al Florida Tech}
+\end{innerlist}
+\halfblankline
+
+\href
+{http://mirkoviroli.apice.unibo.it/}
+{\textbf{Prof. Mirko Viroli}}
+(e-mail:~\href{mailto:mirko.viroli@unibo.it}{mirko.viroli@unibo.it}; phone: +39 0547 3 39216)
+\begin{innerlist}
+    \item Associate Professor,
+        \href{http://www.informatica.unibo.it/it}{Dipartimento di Informatica -- Scienza e Ingegneria}\\
+        \href{http://www.unibo.it/}{Alma Mater Studiorum Università di Bologna}
+    \item[$\diamond$] Via Venezia 52, 47521 Cesena (FC), Italy
+    \item[$\star$] \emph{Il Dr. Viroli è stato il mio supervisore per la tesi specialistica e per il mio dottorato di ricerca}
+\end{innerlist}
+\halfblankline
+
+
+\let\thefootnote\relax\footnotetext{\today}
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% End CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------%
+% The following is copyright and licensing information for
+% redistribution of this LaTeX source code; it also includes a liability
+% statement. If this source code is not being redistributed to others,
+% it may be omitted. It has no effect on the function of the above code.
+%----------------------------------------------------------------------%
+% Copyright (c) 2007, 2008, 2009, 2010, 2011 by Theodore P. Pavlic
+%
+% Unless otherwise expressly stated, this work is licensed under the
+% Creative Commons Attribution-Noncommercial 3.0 United States License. To
+% view a copy of this license, visit
+% http://creativecommons.org/licenses/by-nc/3.0/us/ or send a letter to
+% Creative Commons, 171 Second Street, Suite 300, San Francisco,
+% California, 94105, USA.
+%
+% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+% OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+% MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+% IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+% CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+% TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+% SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+%----------------------------------------------------------------------%
