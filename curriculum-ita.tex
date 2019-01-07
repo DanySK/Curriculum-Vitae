@@ -26,7 +26,8 @@
 \usepackage{calc}
 \usepackage[utf8]{inputenc} % Consente l'uso caratteri accentati italiani
 \usepackage[italian]{babel} % Consente l'uso caratteri accentati italiani
-
+\usepackage[T1]{fontenc}
+\DeclareUnicodeCharacter{300}{\color{red}{SPURIOUS CHAR}}
 % Simpler bibsection for CV sections
 % (thanks to natbib for inspiration)
 \makeatletter
@@ -272,9 +273,21 @@ Italiana
 %
 L'attività di ricerca di Danilo Pianini è orientata all'ingegneria di sistemi pervasivi, situati e complessi, composti da numerose entità eterogenee.
 
-Una delle contingenze da affrontare al fine di ingegnerizzare il processo di creazione di sistemi auto-organizzanti riguarda la soluzione del problema ``local to global'': si desidera programmare il comportamento di una molteplicità di entità partecipanti un sistema, ma il designer vorrebbe concentrarsi esclusivamente sul goal di livello globale, lasciando a strumenti automatici la gestione di dettagli relativi all'interazione fra device a basso livello. Gestire direttamente il livello di interazione fra device, infatti, è difficilmente percorribile in caso di larghi agglomerati di dispositivi (si pensi ad un’area urbana), mentre la scrittura di un software uguale per ogni device che ottenga il comportamento globale desiderato è complicata e le metodologie esistenti, come quella proposta dal progetto europeo SAPERE \cite{ZambonelliPMC2015}, forniscono solo un parziale indirizzo.
+Una delle contingenze da affrontare al fine di ingegnerizzare il processo di creazione di sistemi 
+auto-organizzanti riguarda la soluzione del problema ``local to global'': si desidera programmare il 
+comportamento di una molteplicità di entità partecipanti un sistema, ma il designer vorrebbe 
+concentrarsi esclusivamente sul goal di livello globale, lasciando a strumenti automatici la 
+gestione di dettagli relativi all'interazione fra device a basso livello. Gestire direttamente il 
+livello di interazione fra device, infatti, è difficilmente percorribile in caso di larghi 
+agglomerati di dispositivi (si pensi ad un’area urbana), mentre la scrittura di un software uguale 
+per ogni device che ottenga il comportamento globale desiderato è complicata e le metodologie 
+esistenti, come quella proposta dal progetto europeo SAPERE \cite{ZambonelliPMC2015}, forniscono 
+solo un parziale indirizzo.
 
-L’attività di ricerca di Danilo Pianini, cominciata all'interno del progetto europeo suddetto, ha come obiettivo principale quello di esplorare le potenzialità di paradigmi avanzati per la concezione aggregata del software, non solo dal punto di vista teorico ma da quello pratico e applicativo, elaborando sia metodologie che strumenti a supporto delle suddette.
+L’attività di ricerca di Danilo Pianini, cominciata all'interno del progetto europeo suddetto, ha 
+come obiettivo principale quello di esplorare le potenzialità di paradigmi avanzati per la 
+concezione aggregata del software, non solo dal punto di vista teorico ma da quello pratico e 
+applicativo, elaborando sia metodologie che strumenti a supporto delle suddette.
 In particolare, l'attività col progetto SAPERE ha portato nel alla realizzazione del simulatore Alchemist \cite{PianiniJOS2013}, e di fatto all'avvio del filone di attività sugli strumenti per l'ingegneria dei sistemi distribuiti di cui Pianini è attualmente principal investigator all'interno del gruppo di ricerca con cui collabora. Nell'ambito del progetto, Pianini si è occupato anche della gestione dei rapporti con il partner di Linz, vincendo un finanziamento Marco Polo e trascorrendo tre mesi nel gruppo di ricerca coordinato dal prof. Alois Ferscha, rapporto culminato con la pubblicazione di uno studio sulla predizione del movimento di folle \cite{AnzengruberSocInfo2013}.
 
 Alla conclusione del progetto europeo, l'attività di ricerca di Pianini è proseguita focalizzandosi sulla branca emergente dell'aggregate computing \cite{ViroliCoordination2012}. Il lavoro ha portato ad una fruttuosa collaborazione col gruppo di ricerca guidato dal Dr. Jacob Beal di Raytheon BBN Technologies a Boston, che ha consentito di vincere un secondo finanziamento Marco Polo, utilizzato per trascorrere un periodo di ricerca di tre mesi presso il suddetto centro di ricerca. L'attività di ricerca all'estero è stata coronata dall'ideazione ed implementazione del linguaggio di programmazione Protelis \cite{PianiniSAC2015}, prima implementazione concreta dell'higher-order Field Calculus \cite{DamianiFORTE2015} e tutt'ora parte (assieme al simulatore Alchemist) della catena di strumenti utilizzata per il design, l'analisi e l'implementazione di sistemi software pervasivi.
@@ -408,7 +421,18 @@ Seminario per il corso ``\href{http://apice.unibo.it/xwiki/bin/view/Courses/LsaL
 \begin{outerlist}
 \item[] \textit{Assegnista di ricerca post-doc} \hfill \textbf{da gennaio 2015}
     \begin{innerlist}
-      \item Correlatore di \href{http://amslaurea.unibo.it/14682/}{Niccolò Maltoni: \textit{Progettazione object-oriented di un'interfaccia grafica JavaFX per il simulatore Alchemist}}, 2017.
+      \item Professore del corso 
+`\href{
+https://bitbucket.org/danysk/courses-2018-developing-maintaining-and-sharing-software-tools/download
+s/}{\textit{Developing, Maintaining, and Sharing Software Tools for Research}}, doctoral course for 
+the \href{https://www.unibo.it/en/teaching/phd/2017-2018/data-science-and-computation}{PhD in Data 
+Science and Computation}, XXXIII cycle, 2018.
+      \item Co-Supervisor \href{http://amslaurea.unibo.it/?????/}{Matteo Magnani's bachelor 
+thesis: \textit{Design e implementazione di un sistema di grid computing per il simulatore 
+Alchemist}}, 2017.
+      \item Correlatore di \href{http://amslaurea.unibo.it/14682/}{Niccolò Maltoni: 
+\textit{Progettazione object-oriented di un'interfaccia grafica JavaFX per il simulatore 
+Alchemist}}, 2017.
       \item Correlatore di \href{http://amslaurea.unibo.it/14673/}{Luca Semprini: \textit{Una panoramica su Kotlin: il nuovo linguaggio per lo sviluppo di applicazioni Android}}, 2017.
       \item Correlatore di \href{http://amslaurea.unibo.it/14329/}{Andrea Placuzzi: \textit{Integrazione dei formati di navigazione GPS standard in Alchemist}}, 2017.
       \item Correlatore di \href{http://amslaurea.unibo.it/14019/}{Giacomo Scaparrotti: \textit{Studio delle prestazioni del simulatore Alchemist: ottimizzazione di routing e caching}}, 2017.
