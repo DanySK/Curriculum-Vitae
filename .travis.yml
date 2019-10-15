@@ -41,7 +41,7 @@ after_failure:
 before_deploy:
   - git config --local user.name "Danilo Pianini"
   - git config --local user.email "danilo.pianini@unibo.it"
-  - if [[ "$(git tag --points-at HEAD)" == "" ]]; then git tag $(date --iso-8601=seconds) || :; fi
+  - if [[ "$(git tag --points-at HEAD)" == "" ]]; then git tag $(./filterDate.kts $(git show -s --format=%ci HEAD)) || :; fi
 before_cache:
   - curl "${GRAVIS}.clean_gradle_cache.sh" --output .clean_gradle_cache.sh
   - bash .clean_gradle_cache.sh
