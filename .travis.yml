@@ -15,6 +15,7 @@ addons:
     # LaTeX
     - texlive-base
     - texlive-science
+    - texlive-publishers
     - texlive-latex-extra
     - texlive-latex-recommended
     - texlive-fonts-recommended
