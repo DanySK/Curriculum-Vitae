@@ -18,6 +18,8 @@ addons:
     - texlive-latex-extra
     - texlive-latex-recommended
     - texlive-fonts-recommended
+    # Italian
+    - texlive-lang-italian
     # Debug
     - tree
 env:
