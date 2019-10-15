@@ -36,7 +36,7 @@ script:
   - ./build.kts
 after_failure:
   - tree -a
-  - cat 0*/texput.log
+  - cat *.log
 before_deploy:
   - git config --local user.name "Danilo Pianini"
   - git config --local user.email "danilo.pianini@unibo.it"
