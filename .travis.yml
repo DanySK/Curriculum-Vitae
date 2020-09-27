@@ -1,7 +1,7 @@
 _official-repo: &official-repo
   DanySK/Curriculum-Vitae
 
-dist: bionic
+dist: focal
 
 language: bash
 
