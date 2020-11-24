@@ -12,3 +12,5 @@ curriculum-ita.pdf
 *.bcf
 *.backup
 *.synctex.gz
+*.fls
+*.fdb_latexmk
