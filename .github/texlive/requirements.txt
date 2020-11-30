@@ -1,1 +1,3 @@
 texlive-lang-italian
+texlive-publishers
+texlive-science
