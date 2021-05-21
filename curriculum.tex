@@ -19,12 +19,15 @@
 
 % Don't like 10pt? Try 11pt or 12pt
 \documentclass[10pt]{article}
+\immediate\write18{./scholar_scraper.rb}
 \newcommand{\sapere}{\texttt{SAPERE}}
 \newcommand{\doititle}[2]{\href{http://dx.doi.org/#1}{#2}}
 
 % This is a helpful package that puts math inside length specifications
 \usepackage{calc}
 \usepackage[utf8]{inputenc} % Consente l'uso caratteri accentati italiani
+\usepackage{xcolor}
+\usepackage{tabularx}
 
 % Simpler bibsection for CV sections
 % (thanks to natbib for inspiration)
@@ -237,6 +240,17 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%% Begin CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\newcommand{\macrosection}[1]{
+
+\vspace{20pt}
+\hrulefill
+\begin{center}
+\textbf{#1}
+\end{center}
+\vspace{-7pt}
+\hrulefill
+}
+
 \begin{document}
 \makeheading{Danilo Pianini}
 
@@ -268,7 +282,6 @@ Academic position allowing for advanced research in pervasive computing and Inte
 Italy
 
 \section{Current placement}
-
 \textbf{University of Bologna, Department of Computer Science and Engineering} \hfill 
 \begin{outerlist}
     \item Junior assistant professor (fixed-term)
@@ -279,6 +292,49 @@ Italy
 My current research is focused on the engineering aspects of pervasive computing, with the goal of providing a robust, easy, and coherent chain of tools and procedures that can lead to robust, adaptive, self-healing, and possibly evolving software ecosystems.
 %
 I enjoy exploring and developing novel programming paradigms and languages, which change the way we think about and model application domains.
+
+\section{References Available to Contact}
+\href
+{http://web.mit.edu/jakebeal/www/}
+{\textbf{Dr. Jacob Beal}}
+(e-mail:~\href{mailto:jakebeal@alum.mit.edu}{jakebeal@alum.mit.edu}; phone: +1 617 873 7676)
+\begin{innerlist}
+    \item Scientist,
+        \href{http://www.bbn.com/}{Raytheon BBN Technologies}
+    \item[$\diamond$] 10 Moulton Street, Cambridge, MA 02138, USA
+    \item[$\star$] \emph{Dr. Beal was my local supervisor during my research period in Cambridge and Iowa City}
+\end{innerlist}
+\halfblankline
+
+\href
+{http://apice.unibo.it/xwiki/bin/view/AndreaOmicini/}
+{\textbf{Prof. Andrea Omicini}}
+(e-mail:~\href{mailto:andrea.omicini@unibo.it}{andrea.omicini@unibo.it}; phone: +39 0547 3 39220)
+\begin{innerlist}
+    \item Full Professor,
+        \href{http://www.informatica.unibo.it/it}{Dipartimento di Informatica -- Scienza e Ingegneria}\\
+        \href{http://www.unibo.it/}{Alma Mater Studiorum Università di Bologna}
+
+    \item[$\diamond$] Via Venezia 52, 47521 Cesena (FC), Italy
+
+    \item[$\star$] \emph{Prof. Omicini was my supervisor for Bachelor Thesis and my Italian supervisor during the research period in Florida Tech}
+\end{innerlist}
+\halfblankline
+
+\href
+{http://mirkoviroli.apice.unibo.it/}
+{\textbf{Prof. Mirko Viroli}}
+(e-mail:~\href{mailto:mirko.viroli@unibo.it}{mirko.viroli@unibo.it}; phone: +39 0547 3 39216)
+\begin{innerlist}
+    \item Associate Professor,
+        \href{http://www.informatica.unibo.it/it}{Dipartimento di Informatica -- Scienza e Ingegneria}\\
+        \href{http://www.unibo.it/}{Alma Mater Studiorum Università di Bologna}
+    \item[$\diamond$] Via Venezia 52, 47521 Cesena (FC), Italy
+    \item[$\star$] \emph{Dr. Viroli was my supervisor for Master Thesis and PhD}
+\end{innerlist}
+\halfblankline
+
+\macrosection{EDUCATION AND CARREER}
 
 \section{Education}
 %
@@ -313,7 +369,7 @@ I enjoy exploring and developing novel programming paradigms and languages, whic
              {Computer Engineering}, March 2011
         \begin{innerlist}
         \item \emph{110L/110 - Magna cum Laude}
-        \item Thesis Topic: \emph{A Framework for Simulation of Pervasive Services Ecosystems}
+        \item Thesis Topic: \emph{A Framework for the Simulation of Pervasive Services Ecosystems}
         \item Supervisor:
               \href{http://mirkoviroli.apice.unibo.it/}
                    {Prof. Mirko Viroli}
@@ -330,7 +386,7 @@ I enjoy exploring and developing novel programming paradigms and languages, whic
                    {Prof. Andrea Omicini}
         \item Area of Study: Distributed Systems
         \end{innerlist}
-    
+
 \halfblankline
 \end{outerlist}
 \href{http://www.iiseinaudi.it/}{\textbf{ITCG L. Einaudi}}, Novafeltria (RN), Italy
@@ -358,11 +414,13 @@ Italian Ministry of Education, Universities and Research\\
 \section{Research contracts}
 \input{contracts}
 
-\section{Participation in research groups}
-\input{collaborations}
+\macrosection{SCIENTIFIC PUBLICATIONS}
+
+\section{Bibliometrics}
+\input{scholar}
 
 \vspace{0.1in}
-\section{Publications ordered by time}
+\section{All publications ordered by time}
 \renewcommand{\section}[2]{}
 \nocite{*}
 \vspace{-0.29in}
@@ -376,6 +434,11 @@ Italian Ministry of Education, Universities and Research\\
          \hspace{0in}%
          \marginpar{
          \raggedright \scshape #1}#2}
+
+\macrosection{SCIENTIFIC ACTIVITIES}
+
+\section{Participation in research groups}
+\input{collaborations}         
 
 \section{Editorial activity}
 \input{editorial}
@@ -428,9 +491,6 @@ Seminar for ``\href{http://apice.unibo.it/xwiki/bin/view/Courses/LsaLm1112}{Labo
 \\ \halfblankline \\
 \href{}{Self Organization in Coordination Systems using a Wordnet-based Ontology} \\
 Seminar, Florida Institute of Technology, Melbourne (FL), USA, 2009
-
-\section{Teaching}
-\input{teaching.tex}
 
 \section{Awards}
 Best Paper Award, \href{https://saso2016.informatik.uni-augsburg.de/}{\textbf{SASO 2016}}, Augsburg, Germany
@@ -491,11 +551,59 @@ Best Paper Award, \href{https://saso2016.informatik.uni-augsburg.de/}{\textbf{SA
 \halfblankline
 \end{outerlist}
 
-\section{Professional Experience}
+\macrosection{TEACHING}
+
+\section{Teaching}
+\input{teaching.tex}
+
+\macrosection{OTHER ACTIVITIES}
+
+\halfblankline{}
+
+\colorlet{languagecolor}{blue}
+\colorlet{nolanguagecolor}{gray}
+\newcount\languagecount
+\newcommand\languageknowledge[2]
+  {%
+  \hbox
+      {%
+%         \makebox[10cm][l]{#1}%
+        \languagecount=0
+        \loop\ifnum\languagecount<#2
+          \advance\languagecount1
+          \textcolor{languagecolor}{$\bullet$}%
+        \repeat
+        \loop\ifnum\languagecount<10
+          \advance\languagecount1
+          \textcolor{nolanguagecolor}{$\bullet$}%
+        \repeat
+        \hspace{5pt} #1
+      }%
+
+    }
+
+\begin{minipage}{\textwidth}
+\textbf{Note:} the skill self-evaluation scale has the following meaning:
+
+\languageknowledge{No experience}{0}
+\languageknowledge{Can read programs, make small changes to existing programs}{1}
+\languageknowledge{Can write hello world without looking at a book}{2}
+\languageknowledge{Can utilize basic features without much help}{3}
+\languageknowledge{Can develop medium programs and to do nontrivial troubleshooting}{4}
+\languageknowledge{Can develop large programs using all basic and most esoteric features}{5}
+\languageknowledge{Can develop large programs and deploy new systems from scratch}{6}
+\languageknowledge{Understanding and (appropriate) usage of most lesser known features}{7}
+\languageknowledge{Deep understanding of corner cases and esoteric features}{8}
+\languageknowledge{Could have written the book, but didn't}{9}
+\languageknowledge{Wrote the book or paper (there must be a book or paper)}{10}
+\end{minipage}
+
+
+\section{Professional experience}
 \href{http://www.twinlogix.com/en}{\textbf{twinlogix}}, Santarcangelo di Romagna (RN), Italy
 \begin{outerlist}
-\item[] \textit{Software development}%
-        \hfill \textbf{March 2016 to January 2017}
+\item[] \textit{Consulting on code generators}%
+        \hfill \textbf{2016, 2021}
 \end{outerlist}
 \halfblankline
 
@@ -505,6 +613,125 @@ Best Paper Award, \href{https://saso2016.informatik.uni-augsburg.de/}{\textbf{SA
         \hfill \textbf{July 2004 to August 2004}
 \end{outerlist}
 \halfblankline
+
+
+\section{Proficiency with programming languages}
+\vspace{-20pt}
+\begin{center}
+\begin{tabular}{l  l  l}
+\languageknowledge{Bash}{3}
+&
+\languageknowledge{C}{4}
+&
+\languageknowledge{C$++$}{3}
+\\
+\languageknowledge{C\#}{3}
+&
+\languageknowledge{Groovy}{4}
+&
+\languageknowledge{Kotlin}{6}
+\\
+\languageknowledge{Java}{8}
+&
+\languageknowledge{JavaScript}{2}
+&
+\languageknowledge{Prolog}{3}
+\\
+\languageknowledge{Protelis}{10}
+&
+\languageknowledge{Python}{4}
+&
+\languageknowledge{Ruby}{3}
+\\
+\languageknowledge{Rust}{1}
+&
+\languageknowledge{Scala}{4}
+&
+\languageknowledge{Xtend}{5}
+\\
+\end{tabular}
+\end{center}
+
+\vspace{5pt}
+
+\section{Proficiency with other languages}
+\vspace{-20pt}
+\begin{center}
+\begin{tabular}{l l l}
+\languageknowledge{CSS}{3}
+&
+\languageknowledge{HTML}{4}
+&
+\languageknowledge{JSON}{8}
+\\
+\languageknowledge{\LaTeX}{3}
+&
+\languageknowledge{Markdown}{7}
+&
+\languageknowledge{SQL}{3}
+\\
+\languageknowledge{XML}{6}
+&
+\languageknowledge{XSLT}{3}
+&
+\languageknowledge{YAML}{7}
+\end{tabular}
+\end{center}
+
+\vspace{5pt}
+
+\section{Proficiency with software tools}
+\vspace{-20pt}
+\begin{center}
+\begin{tabular}{l l}
+\languageknowledge{Apache Maven}{6}
+&
+\languageknowledge{Blender}{2}
+\\
+\languageknowledge{GIMP}{3}
+&
+\languageknowledge{Git}{7}
+\\
+\languageknowledge{GitHub Actions}{7}
+&
+\languageknowledge{Gradle}{7}
+\\
+\languageknowledge{Hugo}{4}
+&
+\languageknowledge{Inkscape}{4}
+\\
+\languageknowledge{Jekyll-rb}{4}
+&
+\languageknowledge{Kdenlive}{4}
+\\
+\languageknowledge{Mercurial}{4}
+&
+\languageknowledge{Spreadsheets}{5}
+\\
+\languageknowledge{Subversion}{3}
+&
+\languageknowledge{Travis CI}{7}
+\\
+\languageknowledge{Xtext}{6}
+&
+\end{tabular}
+\end{center}
+
+\vspace{5pt}
+
+\section{Proficiency with operating systems}
+\vspace{-30pt}
+\begin{center}
+\begin{tabular}{l l}
+\languageknowledge{Arch Linux and derivatives}{7}
+&
+\languageknowledge{Gentoo Linux and derivatives}{6}
+\\
+\languageknowledge{Mac OS X}{4}
+&
+\languageknowledge{Microsoft Windows}{4}
+\end{tabular}
+\end{center}
 
 \section{Lead designer of software projects}
 Lead designer and major developer of \href{http://protelis.org/}{Protelis}, 2014--today
@@ -637,16 +864,15 @@ Creator and maintainer of the {Nirvana Community Repository}, 2014--2015
 \end{innerlist}
 \halfblankline
 
-\section{Other activities}
-
-Frequent contributor to \href{http://www.wikipedia.org/}{Wikipedia} and \href{http://www.openstreetmap.org/}{OpenStreetMap}.
-
-\halfblankline{}
-
-Member of both the testing and development teams of \href{http://www.sabayon.org/}{Sabayon Linux}, 2008--2014
+Member of the testing and development teams of \href{http://www.sabayon.org/}{Sabayon Linux}, 2008--2014
 \begin{innerlist}
   \item Sabayon Linux is a Gentoo-based distribution which follows the works-out-of-the-box philosophy, aiming to give the user a wide number of applications that are ready for use and a self-configured operating system.
 \end{innerlist}
+\halfblankline
+
+\section{Service in non-profit organizations}
+Frequent contributor to \href{http://www.wikipedia.org/}{Wikipedia} and \href{http://www.openstreetmap.org/}{OpenStreetMap}.
+
 \halfblankline
 
 \href{http://www.astice.org/}{A.St.I.Ce. Executive Board Member}, January 2006 to November 2009
@@ -656,151 +882,42 @@ Member of both the testing and development teams of \href{http://www.sabayon.org
     \end{innerlist}
 \halfblankline
 
-\section{Skills}
+% \section{Expertise}
+% Mathematics:
+% \begin{innerlist}
+%     \item Applied Mathematics, Real and Complex Analysis, Discrete Mathematics, Geometry.
+% \end{innerlist}
+% \halfblankline
+% 
+% Physics:
+% \begin{innerlist}
+%     \item Mechanics, Electromagnetism.
+% \end{innerlist}
+% \halfblankline
+% 
+% Control Theory and Engineering:
+% \begin{innerlist}
+%     \item Distributed and Self-adaptive Control, Dynamic Optimization, Bio-mimicry, Bio-inspiration.
+% \end{innerlist}
+% \halfblankline
+% 
+% Communications and Signal Processing:
+% \begin{innerlist}
+%     \item Probability, Random Variables, Stochastic Processes, Networks
+% \end{innerlist}
+% \halfblankline
+% 
+% Computer Science and Engineering:
+% \begin{innerlist}
+%     \item Model Checking, Software Verification, Component-Based Reusable Software, Object Oriented Programming, Logic Programming, Functional Programming, Concurrent Programming, Distributed Systems, Benchmarking, Model Driven Software Development.
+% \end{innerlist}
+% \halfblankline
+% 
+% Natural Sciences (Biology, Microbiology, Chemistry, Biochemistry):
+% \begin{innerlist}
+%     \item Molecular orbital theory, stoichiometry, organic chemistry, DNA transcription and replication processes, PCR, metabolic processes, virus classification, bacteria classification, human morphology, physiology, Earth sciences, astronomy.
+% \end{innerlist}
 
-Computer Programming and software design:
-\begin{innerlist}
-    \item Java, Scala, Kotlin, C, Python, Prolog, Groovy, C$+$$+$, UNIX shell scripting, SQL, Xtend, and others.
-    \item Language design with the Xtext framework
-    \item Object Oriented design
-    \item Distributed systems
-    \item Concurrent programming
-    \item Functional programming
-    \item Mobile programming (Android)
-\end{innerlist}
-\halfblankline
-
-Software engineering and productive teamwork:
-\begin{innerlist}
-    \item Distributed Version Control Systems (Mercurial, Git)
-    \item Build systems (Gradle, Maven)
-    \item Continuous Integration (Travis CI, drone.io)
-    \item Automated software deployment
-\end{innerlist}
-\halfblankline
-
-Hardware/software configuration:
-\begin{innerlist}
-    \item Windows installation and configuration
-    \item Linux installation and configuration for personal computers, servers, and embedded systems with specific skills for Gentoo Linux, its derivatives and Arch Linux.
-    \item Server and Desktop systems assembling
-    \item Overclocking
-\end{innerlist}
-\halfblankline
-
-Information/Internet Technology:
-\begin{innerlist}
-    \item Markup languages (XML, HTML, Markdown)
-    \item Database manipulation with SQL
-    \item Networking (UDP, TCP, ARP, DNS)
-    \item Services (SQL, HTTP, application-specific daemon design)
-    \item Content Managing (Joomla, Drupal)
-    \item Static website generators (Jekyllrb)
-\end{innerlist}
-\halfblankline
-
-Operating Systems:
-\begin{innerlist}
-    \item Linux, with specific skills for Gentoo, Sabayon and Arch
-    \item other UNIX variants
-    \item Microsoft Windows family
-\end{innerlist}
-\halfblankline
-
-Productivity Applications:
-\begin{innerlist}
-    \item \LaTeX{}, \BibTeX{}
-    \item Common productivity packages (for Windows and Linux platforms)
-\end{innerlist}
-\halfblankline
-
-Multimedia (basic knowledge):
-\begin{innerlist}
-    \item Scalar image editing and analysis (Computer Vision skills, Photoshop, GIMP)
-    \item Vectorial image editing (Dia, Inkscape)
-    \item RAW image processing
-    \item Non-linear video editing (Kdenlive, Openshot)
-    \item 3D Design (Blender)
-    \item 3D Programming (OpenGL)
-\end{innerlist}
-
-
-\section{Expertise}
-Mathematics:
-\begin{innerlist}
-    \item Applied Mathematics, Real and Complex Analysis, Discrete Mathematics, Geometry.
-\end{innerlist}
-\halfblankline
-
-Physics:
-\begin{innerlist}
-    \item Mechanics, Electromagnetism.
-\end{innerlist}
-\halfblankline
-
-Control Theory and Engineering:
-\begin{innerlist}
-    \item Distributed and Self-adaptive Control, Dynamic Optimization, Bio-mimicry, Bio-inspiration.
-\end{innerlist}
-\halfblankline
-
-Communications and Signal Processing:
-\begin{innerlist}
-    \item Probability, Random Variables, Stochastic Processes, Networks
-\end{innerlist}
-\halfblankline
-
-Computer Science and Engineering:
-\begin{innerlist}
-    \item Model Checking, Software Verification, Component-Based Reusable Software, Object Oriented Programming, Logic Programming, Functional Programming, Concurrent Programming, Distributed Systems, Benchmarking, Model Driven Software Development.
-\end{innerlist}
-\halfblankline
-
-Natural Sciences (Biology, Microbiology, Chemistry, Biochemistry):
-\begin{innerlist}
-    \item Molecular orbital theory, stoichiometry, organic chemistry, DNA transcription and replication processes, PCR, metabolic processes, virus classification, bacteria classification, human morphology, physiology, Earth sciences, astronomy.
-\end{innerlist}
-
-\section{References Available to Contact}
-\href
-{http://web.mit.edu/jakebeal/www/}
-{\textbf{Dr. Jacob Beal}}
-(e-mail:~\href{mailto:jakebeal@alum.mit.edu}{jakebeal@alum.mit.edu}; phone: +1 617 873 7676)
-\begin{innerlist}
-    \item Scientist,
-        \href{http://www.bbn.com/}{Raytheon BBN Technologies}
-    \item[$\diamond$] 10 Moulton Street, Cambridge, MA 02138, USA
-    \item[$\star$] \emph{Dr. Beal was my local supervisor during my research period in Cambridge and Iowa City}
-\end{innerlist}
-\halfblankline
-
-\href
-{http://apice.unibo.it/xwiki/bin/view/AndreaOmicini/}
-{\textbf{Prof. Andrea Omicini}}
-(e-mail:~\href{mailto:andrea.omicini@unibo.it}{andrea.omicini@unibo.it}; phone: +39 0547 3 39220)
-\begin{innerlist}
-    \item Full Professor,
-        \href{http://www.informatica.unibo.it/it}{Dipartimento di Informatica -- Scienza e Ingegneria}\\
-        \href{http://www.unibo.it/}{Alma Mater Studiorum Università di Bologna}
-
-    \item[$\diamond$] Via Venezia 52, 47521 Cesena (FC), Italy
-
-    \item[$\star$] \emph{Prof. Omicini was my supervisor for Bachelor Thesis and my Italian supervisor during the research period in Florida Tech}
-\end{innerlist}
-\halfblankline
-
-\href
-{http://mirkoviroli.apice.unibo.it/}
-{\textbf{Prof. Mirko Viroli}}
-(e-mail:~\href{mailto:mirko.viroli@unibo.it}{mirko.viroli@unibo.it}; phone: +39 0547 3 39216)
-\begin{innerlist}
-    \item Associate Professor,
-        \href{http://www.informatica.unibo.it/it}{Dipartimento di Informatica -- Scienza e Ingegneria}\\
-        \href{http://www.unibo.it/}{Alma Mater Studiorum Università di Bologna}
-    \item[$\diamond$] Via Venezia 52, 47521 Cesena (FC), Italy
-    \item[$\star$] \emph{Dr. Viroli was my supervisor for Master Thesis and PhD}
-\end{innerlist}
-\halfblankline
 
 
 \let\thefootnote\relax\footnotetext{\today}
