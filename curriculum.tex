@@ -19,7 +19,7 @@
 
 % Don't like 10pt? Try 11pt or 12pt
 \documentclass[10pt]{article}
-\immediate\write18{gem install bundler}
+\immediate\write18{gem install --user-install bundler}
 \immediate\write18{bundle install}
 \immediate\write18{./scholar_scraper.rb}
 \newcommand{\sapere}{\texttt{SAPERE}}
