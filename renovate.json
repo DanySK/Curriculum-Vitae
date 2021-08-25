@@ -1,5 +1,3 @@
 {
-  "extends": [
-    "github>DanySK/renovate-config"
-  ]
+  "extends": [ "github>DanySK/renovate-config" ]
 }
