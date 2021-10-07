@@ -6,10 +6,12 @@ jobs:
   Setup-Compile-Deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Run the preliminary scripts
-        run: |
+    - name: Checkout
+      uses: danysk/action-checkout@master
+    - name: Run the preliminary scripts
+      run: |
           ./setup_ruby.sh
           ./scholar_scraper.rb
-      - env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        uses: DanySK/compile-and-publish-all-latex@0.1.7
+    - env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: DanySK/compile-and-publish-all-latex@0.1.7
