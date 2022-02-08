@@ -16,3 +16,4 @@ curriculum-ita.pdf
 *.fdb_latexmk
 scholar.tex
 *.rubbercache
+*.synctex*
