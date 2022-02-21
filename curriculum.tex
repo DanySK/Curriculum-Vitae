@@ -29,24 +29,14 @@
 \usepackage[utf8]{inputenc} % Consente l'uso caratteri accentati italiani
 \usepackage{xcolor}
 \usepackage{tabularx}
-
-% Simpler bibsection for CV sections
-% (thanks to natbib for inspiration)
-\makeatletter
-\newlength{\bibhang}
-\setlength{\bibhang}{1em}
-\newlength{\bibsep}
- {\@listi \global\bibsep\itemsep \global\advance\bibsep by\parsep}
-\newenvironment{bibsection}%
-        {\vspace{-\baselineskip}\begin{list}{}{%
-       \setlength{\leftmargin}{\bibhang}%
-       \setlength{\itemindent}{-\leftmargin}%
-       \setlength{\itemsep}{\bibsep}%
-       \setlength{\parsep}{\z@}%
-        \setlength{\partopsep}{0pt}%
-        \setlength{\topsep}{0pt}}}
-        {\end{list}\vspace{-.6\baselineskip}}
-\makeatother
+\usepackage[
+backend=biber,
+style=ieee,
+sorting=ynt,
+url=false,
+defernumbers=true
+]{biblatex}
+\addbibresource{bibliography.bib}
 
 % Layout: Puts the section titles on left side of page
 \reversemarginpar
@@ -426,13 +416,43 @@ Italian Ministry of Education, Universities and Research\\
 \input{scholar}
 
 \vspace{0.1in}
-\section{All publications ordered by time}
+\section{Journal publications sorted by time}
 \renewcommand{\section}[2]{}
 \nocite{*}
 \vspace{-0.29in}
-\bibliographystyle{IEEEtran}
-\bibliography{bibliography}
-\vspace{0.1in}
+\DeclareFieldFormat{labelnumberwidth}{#1}
+\printbibliography[type=article,omitnumbers=true]{}
+
+\renewcommand{\section}[2]%
+        {\pagebreak[3]\vspace{1.3\baselineskip}%
+         \phantomsection\addcontentsline{toc}{section}{#1}%
+         \hspace{0in}%
+         \marginpar{
+         \raggedright \scshape #1}#2}
+\section{Contributions in conference proceedings sorted by time}
+\renewcommand{\section}[2]{}
+\vspace{-0.29in}
+\defbibfilter{conferences}{
+  type=inproceedings or
+  type=incollection
+}
+\printbibliography[filter=conferences,omitnumbers=true]{}
+
+\renewcommand{\section}[2]%
+        {\pagebreak[3]\vspace{1.3\baselineskip}%
+         \phantomsection\addcontentsline{toc}{section}{#1}%
+         \hspace{0in}%
+         \marginpar{
+         \raggedright \scshape #1}#2}
+\section{Other publications (books, proceedings, chapters, etc) sorted by time}
+\renewcommand{\section}[2]{}
+\vspace{-0.29in}
+\defbibfilter{other}{
+  not ( type=inproceedings or type=incollection or type=article )
+}
+\printbibliography[filter=other,omitnumbers=true]{}
+
+\newpage
 
 \renewcommand{\section}[2]%
         {\pagebreak[3]\vspace{1.3\baselineskip}%
