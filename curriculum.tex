@@ -29,16 +29,7 @@
 \usepackage[utf8]{inputenc} % Consente l'uso caratteri accentati italiani
 \usepackage{xcolor}
 \usepackage{tabularx}
-\usepackage[hidelinks]{hyperref}
-\usepackage[T1]{fontenc}
-\hypersetup{
-    colorlinks,
-    breaklinks,
-    linkcolor=darkblue,
-    urlcolor=darkblue,
-    anchorcolor=darkblue,
-    citecolor=darkblue
-}
+\usepackage[hyphens]{url}
 \usepackage[
 backend=biber,
 style=ieee,
@@ -47,6 +38,19 @@ url=false,
 defernumbers=true,
 bibencoding=utf8
 ]{biblatex}
+\usepackage[hidelinks]{hyperref}
+\usepackage{underscore}
+% \usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\hypersetup{
+    colorlinks,
+    breaklinks,
+    linkcolor=darkblue,
+    urlcolor=darkblue,
+    anchorcolor=darkblue,
+    citecolor=darkblue
+}
 \addbibresource{bibliography.bib}
 
 % Layout: Puts the section titles on left side of page
