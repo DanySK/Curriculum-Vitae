@@ -19,7 +19,7 @@ citedBy = scholar_page.xpath('//*[@class="gsc_rsb_std"]')
     .map {| tag | tag.text }
 latex_newline = '\\\\'
 tex = <<-TeX
-% TeX root = curriculum.tex
+% ! TeX root = curriculum.tex
 \\textbf{\\href{https://scholar.google.com/citations?user=0CLlt5oAAAAJ&hl=en}{Google Scholar metrics as of #{Time.now.strftime('%Y-%m-%d')}}}
 \\begin{outerlist}
     \\item[] Overall
