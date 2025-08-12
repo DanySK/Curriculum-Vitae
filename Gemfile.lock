@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    nokogiri (1.18.8-x86_64-linux-gnu)
+    nokogiri (1.18.9-x86_64-linux-gnu)
       racc (~> 1.4)
     racc (1.8.1)
 
