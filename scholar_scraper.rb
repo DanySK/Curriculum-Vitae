@@ -19,6 +19,16 @@ since = scholar_page.xpath('//*[@class="gsc_rsb_sth"]')
     .first
 citedBy = scholar_page.xpath('//*[@class="gsc_rsb_std"]')
     .map {| tag | tag.text }
+# require that all 6 metrics are present, otherwise the page structure may have changed: fail fast.
+if citedBy.length < 6
+    raise "Expected 6 metrics, but found #{citedBy.length}. The page structure may have changed."
+end
+# require that all 6 metrics are numeric, otherwise the page structure may have changed: fail fast.
+citedBy.each_with_index do |metric, index|
+    unless metric.match?(/^\d+$/)
+        raise "Expected metric #{index} to be numeric, but found '#{metric}'. The page structure may have changed."
+    end
+end
 latex_newline = '\\\\'
 tex = <<-TeX
 % ! TeX root = curriculum.tex
