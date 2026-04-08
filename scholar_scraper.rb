@@ -10,7 +10,9 @@ def download_html(url)
 end
 
 #Scholar
+puts "Downloading Google Scholar page"
 scholar_page = download_html('https://scholar.google.com/citations?user=0CLlt5oAAAAJ&hl=en')
+puts scholar_page
 since = scholar_page.xpath('//*[@class="gsc_rsb_sth"]')
     .map { |tag| tag.text }
     .filter { |text| text.include?('Since') }
