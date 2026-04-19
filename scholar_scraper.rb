@@ -7,6 +7,10 @@ AUTHOR_ID = '0CLlt5oAAAAJ'.freeze
 SCHOLAR_URL = "https://scholar.google.com/citations?user=#{AUTHOR_ID}&hl=en".freeze
 SERPAPI_URL = 'https://serpapi.com/search.json'.freeze
 
+def format_fetch_error(error)
+  "#{error.class}: #{error.message}"
+end
+
 def http_get(uri)
   Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
     response = http.request(Net::HTTP::Get.new(uri))
@@ -107,13 +111,20 @@ end
 
 def scholar_metrics
   api_key = ENV.fetch('SERPAPI_KEY', '').strip
-  if api_key.empty?
-    puts 'SERPAPI_KEY is unset or empty, using direct Google Scholar scraping'
-    fetch_scraped_metrics
-  else
+  if !api_key.empty?
     puts 'SERPAPI_KEY detected, using SerpApi for Google Scholar metrics'
-    fetch_serpapi_metrics(api_key)
+    begin
+      return fetch_serpapi_metrics(api_key)
+    rescue StandardError => e
+      warn "SerpApi fetch failed, falling back to direct Google Scholar scraping: #{format_fetch_error(e)}"
+    end
+  else
+    puts 'SERPAPI_KEY is unset or empty, using direct Google Scholar scraping'
   end
+
+  fetch_scraped_metrics
+rescue StandardError => e
+  raise "Scholar metrics unavailable: #{format_fetch_error(e)}"
 end
 
 metrics = scholar_metrics

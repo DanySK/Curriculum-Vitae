@@ -19,5 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: DanySK/compile-and-publish-all-latex@2.2.3
+        env:
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
