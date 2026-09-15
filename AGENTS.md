@@ -19,12 +19,14 @@ Several sections are split into standalone `.tex` fragments and included from th
 
 ## Build And Validation
 
-- Preferred full build: `./build.kts`
-- Preferred single-target validation command for the English CV: `latexmk -pdf -file-line-error -interaction=nonstopmode -synctex=1 -output-format=pdf -output-directory=out -shell-escape curriculum.tex`
-- `build.kts` compiles every `curriculum*.tex` file with `pdflatex -shell-escape`, then runs `bibtex` when citations are detected.
-- `curriculum.tex` uses `biblatex` with `biber`, and the repository includes a local `.latexmkrc` so the `latexmk` command above invokes `biber` automatically.
-- The English CV runs `./setup_ruby.sh` and `./scholar_scraper.rb` via LaTeX shell escape. This can install Ruby gems and fetch Google Scholar data.
-- Do not assume network access is available. If build validation is needed in a restricted environment, explain clearly when the Scholar-generation step prevents a full compile.
+- Canonical build command: `latexmk -pdf -file-line-error -interaction=nonstopmode -synctex=1 -output-format=pdf -output-directory=out *.tex`
+  - Run from the repository root; `*.tex` expands to every top-level `.tex` file (currently `curriculum.tex` and `curriculum-ita.tex`), and output lands in `out/`.
+  - To validate a single document, replace `*.tex` with just that filename, e.g. `curriculum-ita.tex`.
+  - `curriculum.tex` requires `-shell-escape` added to that command (see below); `curriculum-ita.tex` does not need it.
+- Alternative full build: `./build.kts` — compiles every `curriculum*.tex` file with `pdflatex -shell-escape`, then runs `bibtex` when citations are detected. Slower and uses classic `bibtex` semantics rather than `latexmk`/`biber`.
+- `curriculum.tex` uses `biblatex` with `biber`; the repository's `.latexmkrc` sets `$bibtex = 'biber %O %B'` so `latexmk` invokes `biber` automatically. `curriculum-ita.tex` uses classic `bibtex` with the `IEEEtran` style.
+- `curriculum.tex` runs `./setup_ruby.sh` and `./scholar_scraper.rb` via LaTeX shell escape (`\write18`), which requires passing `-shell-escape` to `latexmk`/`pdflatex`. This step can install Ruby gems and fetch Google Scholar data over the network, and regenerates `scholar.tex`.
+- Do not assume network access is available. If build validation is needed in a restricted environment, explain clearly when the Scholar-generation step prevents a full compile, and consider validating `curriculum-ita.tex` (no shell-escape/network dependency) instead.
 
 ## Editing Rules
 
