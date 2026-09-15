@@ -8,6 +8,7 @@
 .directory
 curriculum.pdf
 curriculum-ita.pdf
+cv-2-pager.pdf
 *.run.xml
 *.bcf
 *.backup
@@ -15,6 +16,7 @@ curriculum-ita.pdf
 *.fls
 *.fdb_latexmk
 scholar.tex
+scholar-summary.tex
 *.rubbercache
 *.synctex*
 .idea/

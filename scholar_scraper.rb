@@ -150,3 +150,11 @@ TEX
 
 puts tex
 File.write('scholar.tex', tex)
+
+# One-line variant consumed by the condensed CV (cv-2-pager.tex)
+File.write(
+  'scholar-summary.tex',
+  "\\newcommand{\\scholarsummary}{#{metrics[:citations_all]} citations, " \
+  "h-index #{metrics[:h_index_all]}, i10-index #{metrics[:i10_index_all]} " \
+  "(Google Scholar, #{Time.now.strftime('%Y-%m-%d')})}\n"
+)
